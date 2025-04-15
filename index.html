@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Youtube</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo" data-i18n="logo">channale name</div>
+    <div class="nav-links">
+      <a href="#home" data-i18n="home">Home</a>
+      <a href="#about" data-i18n="about">About</a>
+      <a href="#contact" data-i18n="contact">Contact</a>
+      <button class="theme-toggle" onclick="toggleTheme()">🌙/☀️</button>
+      <button class="lang-toggle" onclick="toggleLanguage()">العربية</button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="header">
+    <h1 data-i18n="headerTitle">Welcome to Our Modern Website</h1>
+    <p data-i18n="headerSub">Elegant cards for elite connections</p>
+  </header>
+
+  <!-- Cards -->
+  <main>
+    <div class="cards-container">
+      <div class="card">
+        <img src="img/undraw_social-thinking_x42y.svg" alt="Instagram">
+        <div class="card-content">
+          <h2 data-i18n="card1Title">Instagram</h2>
+          <p data-i18n="card1Desc">Follow us for stunning visuals and inspiration.</p>
+          <button  data-i18n="visit">Visit</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="img/undraw_group-selfie_145x.svg" alt="Discord">
+        <div class="card-content">
+          <h2 data-i18n="card2Title">Discord</h2>
+          <p data-i18n="card2Desc">Chat, connect, and collaborate with our vibrant community.</p>
+          <button  data-i18n="join">Join</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="img/undraw_feeling-proud_tdos.svg" alt="GitHub">
+        <div class="card-content">
+          <h2 data-i18n="card3Title">GitHub</h2>
+          <p data-i18n="card3Desc">Explore and contribute to our open-source projects.</p>
+          <button  data-i18n="explore">Explore</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="img/undraw_shared-workspace_1u82.svg" alt="Fiverr">
+        <div class="card-content">
+          <h2 data-i18n="card4Title">Fiverr</h2>
+          <p data-i18n="card4Desc">Find top freelance services and creative solutions.</p>
+          <button  data-i18n="explore">Explore</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="img/undraw_appreciate-it_aans.svg" alt="Business">
+        <div class="card-content">
+          <h2 data-i18n="card5Title">Business Inquiry</h2>
+          <p data-i18n="card5Desc">For sponsorships or business inquiries, email us now.</p>
+          <button  data-i18n="email">Email Us</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 <span data-i18n="footer">Modern Social Cards. All rights reserved.</span></p>
+  </footer>
+
+<script src="index.js"></script>
+</body>
+</html>
