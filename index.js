@@ -3,17 +3,17 @@ let buttons = document.querySelectorAll('button')
 let chName;
 function redirect(number) {
   if(number == '2') {
-    window.open('instagram')
+    window.open('https://www.instagram.com/4harabic')
   }else if (number == '3') {
-    window.open('/discord')
+    window.open('https://discord.gg/xD3ktJgh')
   }else if (number == '4') {
-    window.open('/github')
+    window.open('https://github.com/morgan4h')
   }else if(number == '5') {
-    window.open('fiverr')
+    window.open('https://www.fiverr.com/s/LdoBdmA')
   }else if (number == '6') {
-    window.open('/email')
+    window.open('mailto:4harabic@gmail.com')
   }else if (number == '7') {
-    window.open('/linkdin') 
+    window.open('https://www.linkedin.com/in/morgan-tmk-92672a360') 
   }
  }
 function loopElement(link,type,name) {
@@ -44,13 +44,13 @@ function loopElement(link,type,name) {
         case 'href':
           // console.log(link[i].textContent)
           link[0].onclick = function() {
-            location.href = '/link1'
+           window.open('https://youtube.com/@sofai4h')
           }
           link[1].onclick = function() {
-            location.href = '/link2'
+           window.open('https://youtube.com/@morgan4h')
           }
           link[2].onclick = function() {
-            location.href = '/link3'
+            window.open('https://youtube.com/@tmk4h')
           }
           break
     
@@ -79,9 +79,9 @@ if (location.search == '?t=sofai4h') {
 const translations = {
   en: {
     logo: chName,
-    home: "Home",
-    about: "About",
-    contact: "Contact",
+    home: "IT",
+    about: "Programming",
+    contact: "Entertainment",
     headerTitle: "Welcome in temp version for our website",
     headerSub: "Help you to connect with me",
     card1Title: "Instagram",
@@ -105,9 +105,9 @@ const translations = {
   },
   ar: {
     logo: chName,
-    home: "الرئيسية",
-    about: "حول",
-    contact: "تواصل",
+    home: "التقنية",
+    about: "البرمجة",
+    contact: "الترفيه",
     headerTitle: "هذه نسخة مؤقتة من الموقع",
     headerSub: "لتسهيل التواصل معا",
     card1Title: "إنستغرام",
