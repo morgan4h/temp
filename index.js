@@ -5,7 +5,7 @@ function redirect(number) {
   if(number == '2') {
     window.open('https://www.instagram.com/4harabic')
   }else if (number == '3') {
-    window.open('https://discord.gg/xD3ktJgh')
+    window.open('https://discord.gg/srEmeNMx')
   }else if (number == '4') {
     window.open('https://github.com/morgan4h')
   }else if(number == '5') {
@@ -82,7 +82,7 @@ const translations = {
     home: "IT",
     about: "Programming",
     contact: "Entertainment",
-    headerTitle: "Welcome in temp version for our website",
+    headerTitle: "Welcome into our temp version",
     headerSub: "Help you to connect with me",
     card1Title: "Instagram",
     card1Desc: "Follow us for stunning visuals and inspiration.",
