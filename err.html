@@ -1,194 +1,200 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>404 Error - Page Not Found</title>
-  <!-- Google Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <title>Welcome to 4H ARABIC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
   <style>
-    :root {
-      --bg-color: #f4f4f9;
-      --text-color: #333;
-      --card-bg: #ffffffcc;
-      --nav-bg: #1f1f1f;
-      --gradient: linear-gradient(135deg, #6e8efb, #a777e3);
-    }
-    [data-theme="dark"] {
-      --bg-color: #1a1a1a;
-      --text-color: #f1f1f1;
-      --card-bg: #2a2a2acc;
-      --nav-bg: #000;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
-    body {
-      background: var(--bg-color);
-      color: var(--text-color);
-      transition: background 0.4s, color 0.4s;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    /* Navigation Bar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .nav-logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: var(--text-color);
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .nav-links a,
-    .nav-links button {
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      font-weight: 500;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      color: var(--text-color);
-      transition: all 0.3s ease;
-      background-color: #000;
-      color: white;
-    }
-    .nav-links a:hover,
-    .nav-links button:hover {
-      background-color: #fff;
-      color: black;
-    }
-    /* Header Section */
-    .header {
-      padding: 3rem 1rem;
-      text-align: center;
-      background: var(--gradient);
-      color: #fff;
-    }
-    .header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-    .header p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-    /* Main Error Section */
-    .error-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 1rem;
-      text-align: center;
-    }
-    .error-container h2 {
-      font-size: 4rem;
+    .welcome-title {
+      font-size: 3.5rem;
       margin-bottom: 1rem;
-      color: #6c63ff;
-    }
-    .error-container p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-    .error-container button {
-      padding: 0.8rem 1.5rem;
-      border: none;
-      background: var(--gradient);
-      color: #fff;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .error-container button:hover {
-      background: #6c63ff;
-    }
-    /* Footer */
-    .footer {
-      background: var(--nav-bg);
-      color: #ccc;
-      padding: 1rem;
+      color: var(--primary-color);
       text-align: center;
+      font-weight: 700;
     }
-    .footer a {
-      color: #fff;
-      margin: 0 0.5rem;
+    
+    .welcome-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      color: var(--secondary-color);
+      font-weight: 600;
     }
+    
+    .welcome-message {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    .welcome-cards-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .highlight {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    
     @media (max-width: 768px) {
-      .header h1 {
-        font-size: 1.8rem;
+      .welcome-title {
+        font-size: 2.5rem;
       }
-      .error-container h2 {
-        font-size: 3rem;
+      
+      .welcome-subtitle {
+        font-size: 1rem;
+      }
+      
+      .welcome-message {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        padding: 0 1rem;
       }
     }
   </style>
 </head>
+
 <body>
-  <!-- Navigation Bar -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-logo">4H ARABIC</div>
-    <div class="nav-links">
-      <a href="/discord">discord</a>
-      <button class="theme-toggle" onclick="toggleTheme()">🌙/☀️</button>
+    <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="/discord">Discord</a>
+      <div class="nav-buttons">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙/☀️</button>
+      </div>
     </div>
   </nav>
-  
-  <!-- Header Section -->
+
+  <!-- Header -->
   <header class="header">
-    <h1>404 - Page Not Found</h1>
-    <p>Sorry, we couldn't find the page you're looking for.</p>
+    <div class="header-content">
+      <h1>Welcome to 4H ARABIC</h1>
+      <p>Your gateway to exclusive creative content and communities</p>
+    </div>
   </header>
-  
-  <!-- Main Error Content -->
-  <div class="error-container">
-    <h2>404</h2>
-    <p>The page you are trying to access does not exist. Please check the URL or return to the homepage.</p>
-    <button onclick="window.location.href='index.html?t=sofai4h'">SOFAI 4H</button>
-    <br>
-    <button onclick="window.location.href='index.html?t=morgan4h'">MORGAN 4H</button>
-    <br>
-    <button onclick="window.location.href='index.html?t=tmk4h'">TMK 4H</button>
-  </div>
-  
+
+  <!-- Welcome Section -->
+  <main class="main-content">
+    <h2 class="welcome-title">Hello There!</h2>
+    <h3 class="welcome-subtitle">We're glad you're here</h3>
+    <p class="welcome-message">Welcome to our platform where creativity meets community. We offer unique content across multiple channels, each with its own special focus. Choose your preferred channel below to start exploring our world of <span class="highlight">innovation</span>, <span class="highlight">design</span>, and <span class="highlight">technology</span>.</p>
+    
+    <div class="cards-wrapper">
+      <div class="cards-container welcome-cards-container">
+        <!-- SOFAI 4H Card -->
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="img/github.png" alt="SOFAI" class="card-icon">
+              <h2>SOFAI 4H</h2>
+            </div>
+            <div class="card-back">
+              <h2>SOFAI 4H</h2>
+              <p>Discover AI innovations, tech tutorials, and creative solutions to modern challenges.</p>
+              <button onclick="window.location.href='index.html?t=sofai4h'">Explore Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- MORGAN 4H Card -->
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="img/discord.webp" alt="MORGAN" class="card-icon">
+              <h2>MORGAN 4H</h2>
+            </div>
+            <div class="card-back">
+              <h2>MORGAN 4H</h2>
+              <p>Join our vibrant community focused on digital arts, programming, and interactive media.</p>
+              <button onclick="window.location.href='index.html?t=morgan4h'">Join Us</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TMK 4H Card -->
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="img/telegram-2019.svg" alt="TMK" class="card-icon">
+              <h2>TMK 4H</h2>
+            </div>
+            <div class="card-back">
+              <h2>TMK 4H</h2>
+              <p>Experience cutting-edge entertainment, creative projects, and innovative technology.</p>
+              <button onclick="window.location.href='index.html?t=tmk4h'">Start Here</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2025 Modern Social Cards. All rights reserved.</p>
+    <p>&copy; 2025 <span>4H ARABIC. All rights reserved.</span></p>
   </footer>
-  
-  <!-- JavaScript for Theme Toggle -->
+
   <script>
+    // Theme toggling functionality
     function toggleTheme() {
       const theme = document.documentElement.getAttribute("data-theme");
       document.documentElement.setAttribute("data-theme", theme === "dark" ? "light" : "dark");
     }
+    
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+      
+      if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function() {
+          mobileMenuToggle.classList.toggle('active');
+          navLinks.classList.toggle('active');
+        });
+      }
+      
+      // Reveal animations on scroll
+      const reveals = document.querySelectorAll('.reveal');
+      
+      function checkReveal() {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+        
+        reveals.forEach(reveal => {
+          const elementTop = reveal.getBoundingClientRect().top;
+          
+          if (elementTop < windowHeight - elementVisible) {
+            reveal.classList.add('active');
+          }
+        });
+      }
+      
+      // Set up staggered animations
+      reveals.forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.1}s`;
+      });
+      
+      // Initial check
+      setTimeout(checkReveal, 100);
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', checkReveal);
+    });
   </script>
 </body>
+
 </html>

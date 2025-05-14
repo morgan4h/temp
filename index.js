@@ -3,7 +3,7 @@ let buttons = document.querySelectorAll('button')
 let chName;
 function redirect(number) {
   if(number == '2') {
-    window.open('https://www.instagram.com/4harabic')
+    window.open('coming-soon.html')
   }else if (number == '3') {
     window.open('https://discord.gg/srEmeNMx')
   }else if (number == '4') {
@@ -84,15 +84,15 @@ const translations = {
     contact: "Entertainment",
     headerTitle: "Welcome into our temp version",
     headerSub: "Help you to connect with me",
-    card1Title: "Instagram",
-    card1Desc: "Follow us for stunning visuals and inspiration.",
+    card1Title: "Telegram",
+    card1Desc: "I'm available to chat and answer any questions you may have.",
     card2Title: "Discord",
     card2Desc: "Chat, connect, and collaborate with our vibrant community.",
     card3Title: "GitHub",
     card3Desc: "Explore and contribute to our open-source projects.",
     card4Title: "Fiverr",
     card4Desc: "Find top freelance services and creative solutions.",
-    card5Title: "Business Inquiry",
+    card5Title: "Business Request",
     card5Desc: "For sponsorships or business inquiries, email us now.",
     visit: "Visit",
     join: "Join",
@@ -111,7 +111,7 @@ const translations = {
     headerTitle: "هذه نسخة مؤقتة من الموقع",
     headerSub: "لتسهيل التواصل معا",
     card1Title: "إنستغرام",
-    card1Desc: "تابعنا لمشاهدة صور ملهمة وجذابة.",
+    card1Desc: "أنا متاح للدردشة والإجابة على أي أسئلة قد تكون لديك.",
     card2Title: "ديسكورد",
     card2Desc: "دردش وتواصل مع مجتمعنا الحيوي.",
     card3Title: "جيت هب",
@@ -156,9 +156,87 @@ function toggleTheme() {
   document.documentElement.setAttribute("data-theme", theme === "dark" ? "light" : "dark");
 }
 
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  
+  mobileMenuToggle.classList.toggle('active');
+  navLinks.classList.toggle('active');
+}
+
+// Close mobile menu when clicking on a link
+function setupMobileNavigation() {
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  const navLinksItems = navLinks.querySelectorAll('a');
+  
+  mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+  
+  navLinksItems.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        toggleMobileMenu();
+      }
+    });
+  });
+  
+  // Close mobile menu on resize if open
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+      navLinks.classList.remove('active');
+      mobileMenuToggle.classList.remove('active');
+    }
+  });
+}
+
+// Scroll reveal function
+function checkReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  const windowHeight = window.innerHeight;
+  const elementVisible = 100; // how many pixels need to be visible
+
+  reveals.forEach(reveal => {
+    const elementTop = reveal.getBoundingClientRect().top;
+    
+    if (elementTop < windowHeight - elementVisible) {
+      reveal.classList.add('active');
+    } else {
+      // Only remove the active class if we're not on mobile
+      // This prevents the cards from disappearing when scrolling back up on mobile
+      if (window.innerWidth > 768) {
+        reveal.classList.remove('active');
+      }
+    }
+  });
+
+  // Add smooth navbar shadow on scroll
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 10) {
+    navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+  } else {
+    navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+  }
+}
+
 // Init
 window.onload = () => {
   const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   document.documentElement.setAttribute("data-theme", preferredTheme);
   updateLanguage(currentLang);
+  setupMobileNavigation();
+  
+  // Set up staggered animations for cards
+  const cards = document.querySelectorAll('.card.reveal');
+  cards.forEach((card, index) => {
+    card.style.transitionDelay = `${index * 0.1}s`;
+  });
+  
+  // Initial check for elements in view
+  setTimeout(() => {
+    checkReveal();
+  }, 100);
+  
+  // Add scroll event listener
+  window.addEventListener('scroll', checkReveal);
 };

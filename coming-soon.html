@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coming Soon - 4H ARABIC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .coming-soon-title {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      text-align: center;
+      font-weight: 700;
+    }
+    
+    .event-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
+    
+    .coming-soon-message {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+    }
+    
+    .countdown-value {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .countdown-label {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .feature-cards-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .form-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: var(--border-radius);
+      background: rgba(255, 255, 255, 0.8);
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+    }
+    
+    .form-button {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--btn-gradient);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .form-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    @media (max-width: 768px) {
+      .coming-soon-title {
+        font-size: 2.5rem;
+      }
+      
+      .event-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      
+      .coming-soon-message {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+      }
+      
+      .countdown-container {
+        gap: 1rem;
+      }
+      
+      .countdown-item {
+        min-width: 65px;
+      }
+      
+      .countdown-value {
+        font-size: 2.2rem;
+      }
+      
+      .countdown-label {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">4H ARABIC</div>
+    <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="err.html">Home</a>
+      <a href="https://discord.gg/srEmeNMx">Discord</a>
+      <div class="nav-buttons">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙/☀️</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+
+
+  <!-- Coming Soon Section -->
+  <main class="main-content">
+    <h2 class="coming-soon-title">Get Ready</h2>
+    <h3 class="event-title" id="event-title">Our New Project is Launching Soon</h3>
+    <p class="coming-soon-message">We're working hard to finish the development of this site. Our target launch date is:</p>
+    
+    <!-- Countdown Timer -->
+    <div class="countdown-container" id="countdown-container">
+      <div class="countdown-item">
+        <div class="countdown-value" id="days">00</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="hours">00</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="minutes">00</div>
+        <div class="countdown-label">Minutes</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="seconds">00</div>
+        <div class="countdown-label">Seconds</div>
+      </div>
+    </div>
+    
+    <!-- Notification Form -->
+  
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 <span>4H ARABIC. All rights reserved.</span></p>
+  </footer>
+
+  <script>
+    // Theme toggling functionality
+    function toggleTheme() {
+      const theme = document.documentElement.getAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", theme === "dark" ? "light" : "dark");
+    }
+    
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+      
+      if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function() {
+          mobileMenuToggle.classList.toggle('active');
+          navLinks.classList.toggle('active');
+        });
+      }
+      
+      // Reveal animations on scroll
+      const reveals = document.querySelectorAll('.reveal');
+      
+      function checkReveal() {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+        
+        reveals.forEach(reveal => {
+          const elementTop = reveal.getBoundingClientRect().top;
+          
+          if (elementTop < windowHeight - elementVisible) {
+            reveal.classList.add('active');
+          }
+        });
+      }
+      
+      // Set up staggered animations
+      reveals.forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.1}s`;
+      });
+      
+      // Initial check
+      setTimeout(checkReveal, 100);
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', checkReveal);
+      
+      // Initialize countdown
+      initCountdown();
+    });
+    
+    // Countdown Timer Logic
+    function initCountdown() {
+      // Set the event details (title and date)
+      const eventTitle = "Telegram coming";
+      const eventDate = new Date();
+      eventDate.setDate(eventDate.getDate() + 1); // Default: 30 days from now
+      
+      // You can set a specific date like this:
+      // const eventDate = new Date("2025-12-31T23:59:59");
+      
+      // Update the event title
+      document.getElementById('event-title').textContent = eventTitle;
+      
+      // Update the countdown every second
+      updateCountdown(eventDate);
+      setInterval(() => updateCountdown(eventDate), 1000);
+    }
+    
+    function updateCountdown(eventDate) {
+      const currentTime = new Date();
+      const difference = eventDate - currentTime;
+      
+      // Calculate time components
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+      
+      // Update the HTML
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+      
+      // If the countdown is over
+      if (difference < 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        
+        clearInterval(countdownInterval);
+        document.getElementById('event-title').textContent = "The Event Has Started!";
+      }
+    }
+    
+    // Form submission
+    function submitForm(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      alert(`Thank you! We'll notify ${email} when we launch.`);
+      document.getElementById('notification-form').reset();
+      return false;
+    }
+  </script>
+</body>
+
+</html>
