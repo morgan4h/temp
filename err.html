@@ -99,7 +99,7 @@
         <div class="card reveal">
           <div class="card-inner">
             <div class="card-front">
-              <img src="img/github.png" alt="SOFAI" class="card-icon">
+              <img src="https://yt3.googleusercontent.com/3aI0s21R4qqBAZ-CrNPoItB254N1mFV1Sjy9xcXRXMAMCdd6X70CiPXk77bE_fL7H7y_EY1CtQ=s900-c-k-c0x00ffffff-no-rj" alt="SOFAI" class="card-icon">
               <h2>SOFAI 4H</h2>
             </div>
             <div class="card-back">
@@ -114,7 +114,7 @@
         <div class="card reveal">
           <div class="card-inner">
             <div class="card-front">
-              <img src="img/discord.webp" alt="MORGAN" class="card-icon">
+              <img src="https://yt3.googleusercontent.com/w41UGHbYhNclv7JDzXjlHZocJTpul_Uvv4vpGf5oj2w9EHFnnjkKgBMkeeDqXfEmqvrY4K4jX90=s160-c-k-c0x00ffffff-no-rj" alt="MORGAN" class="card-icon">
               <h2>MORGAN 4H</h2>
             </div>
             <div class="card-back">
@@ -129,7 +129,7 @@
         <div class="card reveal">
           <div class="card-inner">
             <div class="card-front">
-              <img src="img/telegram-2019.svg" alt="TMK" class="card-icon">
+              <img src="https://yt3.googleusercontent.com/qJFV9pp9EgCBVjm_rbrioZ1pIvK4rshxb2jcGh9wo6Pm8M3-AFzWxy5-ljqAIIzkUvJP8NWxQfM=s120-c-k-c0x00ffffff-no-rj" alt="TMK" class="card-icon">
               <h2>TMK 4H</h2>
             </div>
             <div class="card-back">
@@ -145,17 +145,167 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2025 <span>4H ARABIC. All rights reserved.</span></p>
+    <p>&copy; 2025 <span data-i18n="footer">4H ARABIC. All rights reserved.</span></p>
   </footer>
 
+  <!-- Common JS for Language Selection Modal -->
+  <script src="common.js"></script>
+  
   <script>
+    // Translations object
+    const translations = {
+      en: {
+        logo: "4H ARABIC",
+        home: "Home",
+        discord: "Discord",
+        welcomeHeader: "Welcome to 4H ARABIC",
+        welcomeSubheader: "Your gateway to exclusive creative content and communities",
+        welcomeTitle: "Hello There!",
+        welcomeSubtitle: "We're glad you're here",
+        welcomeMessage: "Welcome to our platform where creativity meets community. We offer unique content across multiple channels, each with its own special focus. Choose your preferred channel below to start exploring our world of innovation, design, and technology.",
+        sofai: "SOFAI 4H",
+        sofaiDesc: "Discover AI innovations, tech tutorials, and creative solutions to modern challenges.",
+        sofaiBtn: "Explore Now",
+        morgan: "MORGAN 4H",
+        morganDesc: "Join our vibrant community focused on digital arts, programming, and interactive media.",
+        morganBtn: "Join Us",
+        tmk: "TMK 4H",
+        tmkDesc: "Experience cutting-edge entertainment, creative projects, and innovative technology.",
+        tmkBtn: "Start Here",
+        footer: "4H ARABIC. All rights reserved.",
+        langToggle: "العربية"
+      },
+      ar: {
+        logo: "4H العربية",
+        home: "الرئيسية",
+        discord: "ديسكورد",
+        welcomeHeader: "مرحبًا بك في 4H العربية",
+        welcomeSubheader: "بوابتك للمحتوى الإبداعي والمجتمعات الحصرية",
+        welcomeTitle: "أهلاً بك!",
+        welcomeSubtitle: "يسعدنا وجودك معنا",
+        welcomeMessage: "مرحبًا بك في منصتنا حيث يلتقي الإبداع بالمجتمع. نقدم محتوى فريدًا عبر قنوات متعددة، كل منها بتركيز خاص. اختر قناتك المفضلة أدناه لبدء استكشاف عالمنا من الابتكار والتصميم والتكنولوجيا.",
+        sofai: "سوفاي 4H",
+        sofaiDesc: "اكتشف ابتكارات الذكاء الاصطناعي والدروس التقنية والحلول الإبداعية للتحديات الحديثة.",
+        sofaiBtn: "استكشف الآن",
+        morgan: "مورغان 4H",
+        morganDesc: "انضم إلى مجتمعنا النابض بالحياة الذي يركز على الفنون الرقمية والبرمجة والوسائط التفاعلية.",
+        morganBtn: "انضم إلينا",
+        tmk: "تي إم كيه 4H",
+        tmkDesc: "استمتع بالترفيه المتطور والمشاريع الإبداعية والتكنولوجيا المبتكرة.",
+        tmkBtn: "ابدأ هنا",
+        footer: "4H العربية. جميع الحقوق محفوظة.",
+        langToggle: "English"
+      }
+    };
+    
+    // Current language
+    let currentLang = localStorage.getItem('preferredLanguage') || 'en';
+    
+    // Function to update language
+    function updateLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      currentLang = lang;
+      localStorage.setItem('preferredLanguage', lang);
+      
+      // Update all text elements with translations
+      document.querySelector('.nav-logo').textContent = translations[lang].logo;
+      
+      const navLinks = document.querySelectorAll('.nav-links a');
+      if (navLinks.length > 0) navLinks[0].textContent = translations[lang].home;
+      if (navLinks.length > 1) navLinks[1].textContent = translations[lang].discord;
+      
+      // Header content
+      const headerContent = document.querySelector('.header-content');
+      if (headerContent) {
+        const headerTitle = headerContent.querySelector('h1');
+        const headerSubtitle = headerContent.querySelector('p');
+        if (headerTitle) headerTitle.textContent = translations[lang].welcomeHeader;
+        if (headerSubtitle) headerSubtitle.textContent = translations[lang].welcomeSubheader;
+      }
+      
+      // Main content
+      const welcomeTitle = document.querySelector('.welcome-title');
+      const welcomeSubtitle = document.querySelector('.welcome-subtitle');
+      const welcomeMessage = document.querySelector('.welcome-message');
+      
+      if (welcomeTitle) welcomeTitle.textContent = translations[lang].welcomeTitle;
+      if (welcomeSubtitle) welcomeSubtitle.textContent = translations[lang].welcomeSubtitle;
+      if (welcomeMessage) {
+        // We need to handle this differently because of the spans
+        welcomeMessage.innerHTML = translations[lang].welcomeMessage;
+        
+        // Re-apply highlight spans if in English
+        if (lang === 'en') {
+          welcomeMessage.innerHTML = welcomeMessage.innerHTML
+            .replace('innovation', '<span class="highlight">innovation</span>')
+            .replace('design', '<span class="highlight">design</span>')
+            .replace('technology', '<span class="highlight">technology</span>');
+        }
+      }
+      
+      // Card content
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        const frontTitle = card.querySelector('.card-front h2');
+        const backTitle = card.querySelector('.card-back h2');
+        const backDesc = card.querySelector('.card-back p');
+        const backBtn = card.querySelector('.card-back button');
+        
+        if (index === 0) { // SOFAI Card
+          if (frontTitle) frontTitle.textContent = translations[lang].sofai;
+          if (backTitle) backTitle.textContent = translations[lang].sofai;
+          if (backDesc) backDesc.textContent = translations[lang].sofaiDesc;
+          if (backBtn) backBtn.textContent = translations[lang].sofaiBtn;
+        } else if (index === 1) { // MORGAN Card
+          if (frontTitle) frontTitle.textContent = translations[lang].morgan;
+          if (backTitle) backTitle.textContent = translations[lang].morgan;
+          if (backDesc) backDesc.textContent = translations[lang].morganDesc;
+          if (backBtn) backBtn.textContent = translations[lang].morganBtn;
+        } else if (index === 2) { // TMK Card
+          if (frontTitle) frontTitle.textContent = translations[lang].tmk;
+          if (backTitle) backTitle.textContent = translations[lang].tmk;
+          if (backDesc) backDesc.textContent = translations[lang].tmkDesc;
+          if (backBtn) backBtn.textContent = translations[lang].tmkBtn;
+        }
+      });
+      
+      // Footer
+      const footerText = document.querySelector('.footer span');
+      if (footerText) footerText.textContent = translations[lang].footer;
+      
+      // Update language toggle button
+      const langToggleBtn = document.createElement('button');
+      langToggleBtn.className = 'lang-toggle';
+      langToggleBtn.setAttribute('onclick', 'toggleLanguage()');
+      langToggleBtn.setAttribute('aria-label', 'Toggle language');
+      langToggleBtn.textContent = translations[lang].langToggle;
+      
+      // Find the nav-buttons div and replace or add the language toggle button
+      const navButtons = document.querySelector('.nav-buttons');
+      const existingLangBtn = document.querySelector('.lang-toggle');
+      if (existingLangBtn) {
+        existingLangBtn.textContent = translations[lang].langToggle;
+      } else if (navButtons) {
+        navButtons.appendChild(langToggleBtn);
+      }
+    }
+    
+    // Function to toggle language
+    function toggleLanguage() {
+      const newLang = currentLang === "en" ? "ar" : "en";
+      updateLanguage(newLang);
+    }
+    
+    // Function to show language selection modal is now in common.js
+    
     // Theme toggling functionality
     function toggleTheme() {
       const theme = document.documentElement.getAttribute("data-theme");
       document.documentElement.setAttribute("data-theme", theme === "dark" ? "light" : "dark");
     }
     
-    // Mobile menu toggle
+    // Mobile menu toggle and initialization
     document.addEventListener('DOMContentLoaded', function() {
       const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
       const navLinks = document.getElementById('nav-links');
@@ -193,6 +343,14 @@
       
       // Add scroll event listener
       window.addEventListener('scroll', checkReveal);
+      
+      // Initialize language
+      updateLanguage(currentLang);
+      
+      // Show language selection on first visit (using the function from common.js)
+      if (typeof showLanguageSelectionModal === 'function') {
+        showLanguageSelectionModal();
+      }
     });
   </script>
 </body>

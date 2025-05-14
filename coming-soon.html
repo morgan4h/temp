@@ -160,17 +160,18 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="nav-logo">4H ARABIC</div>
+    <div class="nav-logo" data-i18n="logo">4H ARABIC</div>
     <div class="mobile-menu-toggle" id="mobile-menu-toggle">
       <span></span>
       <span></span>
       <span></span>
     </div>
     <div class="nav-links" id="nav-links">
-      <a href="err.html">Home</a>
-      <a href="https://discord.gg/srEmeNMx">Discord</a>
+      <a href="err.html" data-i18n="home">Home</a>
+      <a href="https://discord.gg/srEmeNMx" data-i18n="discord">Discord</a>
       <div class="nav-buttons">
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙/☀️</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language" data-i18n="langToggle">العربية</button>
       </div>
     </div>
   </nav>
@@ -180,27 +181,27 @@
 
   <!-- Coming Soon Section -->
   <main class="main-content">
-    <h2 class="coming-soon-title">Get Ready</h2>
-    <h3 class="event-title" id="event-title">Our New Project is Launching Soon</h3>
-    <p class="coming-soon-message">We're working hard to finish the development of this site. Our target launch date is:</p>
+    <h2 class="coming-soon-title" data-i18n="getReady">Get Ready</h2>
+    <h3 class="event-title" id="event-title" data-i18n="eventTitle">Telegram coming</h3>
+    <p class="coming-soon-message" data-i18n="countdownMessage">We're working hard to finish the development of this site. Our target launch date is:</p>
     
     <!-- Countdown Timer -->
     <div class="countdown-container" id="countdown-container">
       <div class="countdown-item">
         <div class="countdown-value" id="days">00</div>
-        <div class="countdown-label">Days</div>
+        <div class="countdown-label" data-i18n="days">Days</div>
       </div>
       <div class="countdown-item">
         <div class="countdown-value" id="hours">00</div>
-        <div class="countdown-label">Hours</div>
+        <div class="countdown-label" data-i18n="hours">Hours</div>
       </div>
       <div class="countdown-item">
         <div class="countdown-value" id="minutes">00</div>
-        <div class="countdown-label">Minutes</div>
+        <div class="countdown-label" data-i18n="minutes">Minutes</div>
       </div>
       <div class="countdown-item">
         <div class="countdown-value" id="seconds">00</div>
-        <div class="countdown-label">Seconds</div>
+        <div class="countdown-label" data-i18n="seconds">Seconds</div>
       </div>
     </div>
     
@@ -210,17 +211,98 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2025 <span>4H ARABIC. All rights reserved.</span></p>
+    <p>&copy; 2025 <span data-i18n="footer">4H ARABIC. All rights reserved.</span></p>
   </footer>
 
+  <!-- Common JS for Language Selection Modal -->
+  <script src="common.js"></script>
+
   <script>
+    // Translations object
+    const translations = {
+      en: {
+        logo: "4H ARABIC",
+        home: "Home",
+        discord: "Discord",
+        getReady: "Get Ready",
+        eventTitle: "Telegram coming",
+        countdownMessage: "We're working hard to finish the development of this site. Our target launch date is:",
+        days: "Days",
+        hours: "Hours",
+        minutes: "Minutes",
+        seconds: "Seconds",
+        eventStarted: "The Event Has Started!",
+        footer: "4H ARABIC. All rights reserved.",
+        langToggle: "العربية"
+      },
+      ar: {
+        logo: "4H العربية",
+        home: "الرئيسية",
+        discord: "ديسكورد",
+        getReady: "كن مستعداً",
+        eventTitle: "تليجرام قادم",
+        countdownMessage: "نحن نعمل بجد لإنهاء تطوير هذا الموقع. موعد الإطلاق المستهدف هو:",
+        days: "أيام",
+        hours: "ساعات",
+        minutes: "دقائق",
+        seconds: "ثواني",
+        eventStarted: "لقد بدأ الحدث!",
+        footer: "4H العربية. جميع الحقوق محفوظة.",
+        langToggle: "English"
+      }
+    };
+    
+    // Current language
+    let currentLang = localStorage.getItem('preferredLanguage') || 'en';
+    
+    // Function to update language
+    function updateLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      currentLang = lang;
+      localStorage.setItem('preferredLanguage', lang);
+      
+      // Update all text elements with data-i18n attributes
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      
+      // Special handling for event title if it's been set by the countdown
+      const eventTitleElement = document.getElementById('event-title');
+      if (eventTitleElement) {
+        if (localStorage.getItem('completionFlag') === 'true') {
+          // If countdown is complete, show completed message in current language
+          eventTitleElement.textContent = translations[lang].eventStarted;
+        } else {
+          // Otherwise show the regular title
+          eventTitleElement.textContent = translations[lang].eventTitle;
+        }
+      }
+    }
+    
+    // Function to toggle language
+    function toggleLanguage() {
+      const newLang = currentLang === "en" ? "ar" : "en";
+      updateLanguage(newLang);
+      
+      // Reinitialize the countdown when language changes to ensure proper element references
+      if (typeof initCountdown === 'function') {
+        setTimeout(initCountdown, 100); // Small delay to ensure DOM is updated
+      }
+    }
+    
+    // Function to show language selection modal is now in common.js
+    
     // Theme toggling functionality
     function toggleTheme() {
       const theme = document.documentElement.getAttribute("data-theme");
       document.documentElement.setAttribute("data-theme", theme === "dark" ? "light" : "dark");
     }
     
-    // Mobile menu toggle
+    // Mobile menu toggle and initialization
     document.addEventListener('DOMContentLoaded', function() {
       const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
       const navLinks = document.getElementById('nav-links');
@@ -259,61 +341,317 @@
       // Add scroll event listener
       window.addEventListener('scroll', checkReveal);
       
+      // Initialize language
+      updateLanguage(currentLang);
+      
+      // Show language selection on first visit (using the function from common.js)
+      if (typeof showLanguageSelectionModal === 'function') {
+        showLanguageSelectionModal();
+      }
+      
       // Initialize countdown
       initCountdown();
     });
     
+    // Global variable to store countdown timer reference
+    let countdownTimerInterval;
+    
     // Countdown Timer Logic
     function initCountdown() {
-      // Set the event details (title and date)
-      const eventTitle = "Telegram coming";
-      const eventDate = new Date();
-      eventDate.setDate(eventDate.getDate() + 1); // Default: 30 days from now
+      // Clear any existing timers to prevent multiple instances
+      if (countdownTimerInterval) {
+        clearInterval(countdownTimerInterval);
+      }
       
-      // You can set a specific date like this:
-      // const eventDate = new Date("2025-12-31T23:59:59");
+      // Create a target date exactly 1 day from now
+      const now = new Date();
+      const targetDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 1 day countdown
       
-      // Update the event title
-      document.getElementById('event-title').textContent = eventTitle;
+      // Get references to countdown elements (making sure they exist)
+      const daysEl = document.getElementById('days');
+      const hoursEl = document.getElementById('hours');
+      const minutesEl = document.getElementById('minutes');
+      const secondsEl = document.getElementById('seconds');
+      const eventTitleEl = document.getElementById('event-title');
       
-      // Update the countdown every second
-      updateCountdown(eventDate);
-      setInterval(() => updateCountdown(eventDate), 1000);
+      // Make sure all required elements exist before proceeding
+      if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+        console.error('Countdown elements not found');
+        return;
+      }
+      
+      // Check if countdown is already complete from a previous visit
+      if (localStorage.getItem('completionFlag') === 'true') {
+        // If already complete, set timer to zeros and show completed message
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        
+        if (eventTitleEl) {
+          eventTitleEl.textContent = translations[currentLang].eventStarted;
+        }
+        
+        // Show completion alert if not already seen
+        if (localStorage.getItem('completionAlertSeen') !== 'true') {
+          createCompletionAlert();
+        }
+        return;
+      }
+      
+      // Function to update countdown display
+      function updateDisplay() {
+        // Get current time
+        const now = new Date().getTime();
+        
+        // Find the difference between now and the target date
+        const distance = targetDate - now;
+        
+        // Time calculations for days, hours, minutes and seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Update the HTML elements (checking they exist first)
+        if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+        if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+        
+        // If the countdown is over
+        if (distance < 0) {
+          // Stop the countdown
+          clearInterval(countdownTimerInterval);
+          
+          // Set display to zeros (checking they exist first)
+          if (daysEl) daysEl.textContent = '00';
+          if (hoursEl) hoursEl.textContent = '00';
+          if (minutesEl) minutesEl.textContent = '00';
+          if (secondsEl) secondsEl.textContent = '00';
+          
+          // Update event title
+          if (eventTitleEl) {
+            eventTitleEl.textContent = translations[currentLang].eventStarted;
+          }
+          
+          // Set completion flag
+          localStorage.setItem('completionFlag', 'true');
+          
+          // Show completion alert
+          createCompletionAlert();
+          return true; // Signal completion
+        }
+        return false; // Not completed yet
+      }
+      
+      // Run once immediately
+      updateDisplay();
+      
+      // Start the countdown timer
+      countdownTimerInterval = setInterval(updateDisplay, 1000);
     }
     
-    function updateCountdown(eventDate) {
-      const currentTime = new Date();
-      const difference = eventDate - currentTime;
-      
-      // Calculate time components
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-      
-      // Update the HTML
-      document.getElementById('days').textContent = days.toString().padStart(2, '0');
-      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-      
-      // If the countdown is over
-      if (difference < 0) {
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
-        
-        clearInterval(countdownInterval);
-        document.getElementById('event-title').textContent = "The Event Has Started!";
+    function createCompletionAlert() {
+      // Check if alert already exists
+      if (document.querySelector('.completion-alert')) {
+        return;
       }
+      
+      // Create the alert container
+      const alertContainer = document.createElement('div');
+      alertContainer.className = 'completion-alert';
+      
+      // Create inner content
+      const alertContent = document.createElement('div');
+      alertContent.className = 'completion-alert-content';
+      
+      // Add icon
+      const iconElement = document.createElement('div');
+      iconElement.className = 'completion-alert-icon';
+      iconElement.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor"/></svg>';
+      
+      // Add heading and message
+      const heading = document.createElement('h3');
+      heading.className = 'completion-alert-heading';
+      heading.textContent = currentLang === 'ar' ? 'مبروك!' : 'Congratulations!';
+      
+      const message = document.createElement('p');
+      message.className = 'completion-alert-message';
+      message.textContent = currentLang === 'ar' 
+        ? 'تيليجرام متاح الآن! تحقق من الموقع للحصول على آخر التحديثات.' 
+        : 'Telegram is now available! Check the site for the latest updates.';
+      
+      // Add button
+      const button = document.createElement('button');
+      button.className = 'completion-alert-button';
+      button.textContent = currentLang === 'ar' ? 'تحقق الآن' : 'Check Now';
+      button.addEventListener('click', function() {
+        window.location.href = 'index.html';
+      });
+      
+      // Add close button
+      const closeButton = document.createElement('button');
+      closeButton.className = 'completion-alert-close';
+      closeButton.innerHTML = '&times;';
+      closeButton.addEventListener('click', function() {
+        document.body.removeChild(alertContainer);
+        // Store that user has seen the alert
+        localStorage.setItem('completionAlertSeen', 'true');
+      });
+      
+      // Assemble the alert
+      alertContent.appendChild(iconElement);
+      alertContent.appendChild(heading);
+      alertContent.appendChild(message);
+      alertContent.appendChild(button);
+      alertContent.appendChild(closeButton);
+      
+      alertContainer.appendChild(alertContent);
+      
+      // Add styles for the alert
+      const style = document.createElement('style');
+      style.textContent = `
+        .completion-alert {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.7);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 10000;
+          animation: fadeIn 0.5s ease-out;
+        }
+        
+        .completion-alert-content {
+          background-color: var(--card-bg, #ffffff);
+          border-radius: var(--border-radius, 16px);
+          padding: 2rem;
+          text-align: center;
+          max-width: 90%;
+          width: 450px;
+          position: relative;
+          animation: slideIn 0.5s ease-out;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .completion-alert-icon {
+          color: var(--primary-color, #6c5ce7);
+          margin-bottom: 1rem;
+        }
+        
+        .completion-alert-heading {
+          font-size: 1.8rem;
+          color: var(--primary-color, #6c5ce7);
+          margin-bottom: 1rem;
+          font-weight: 700;
+        }
+        
+        .completion-alert-message {
+          font-size: 1.1rem;
+          margin-bottom: 1.5rem;
+          color: var(--text-color, #333);
+          line-height: 1.5;
+        }
+        
+        .completion-alert-button {
+          background: var(--btn-gradient, linear-gradient(to right, #6c5ce7, #a29bfe));
+          color: white;
+          border: none;
+          border-radius: 30px;
+          padding: 0.8rem 2rem;
+          font-size: 1.1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .completion-alert-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+        
+        .completion-alert-close {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          background: transparent;
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: var(--text-color, #333);
+          padding: 0;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: color 0.2s ease;
+        }
+        
+        .completion-alert-close:hover {
+          color: var(--primary-color, #6c5ce7);
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+          from { transform: translateY(-50px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .completion-alert-content {
+            padding: 1.5rem;
+            width: 85%;
+          }
+          
+          .completion-alert-heading {
+            font-size: 1.5rem;
+          }
+          
+          .completion-alert-message {
+            font-size: 0.9rem;
+          }
+          
+          .completion-alert-button {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
+          }
+        }
+        
+        /* RTL Support */
+        [dir="rtl"] .completion-alert-close {
+          right: auto;
+          left: 15px;
+        }
+      `;
+      
+      document.head.appendChild(style);
+      document.body.appendChild(alertContainer);
     }
+    
+    // Note: checkCompletionStatus and updateCountdown functions have been merged into the initCountdown function
     
     // Form submission
     function submitForm(event) {
       event.preventDefault();
       const email = document.getElementById('email').value;
-      alert(`Thank you! We'll notify ${email} when we launch.`);
+      
+      // Multilingual alert based on current language
+      if (currentLang === 'ar') {
+        alert(`شكراً لك! سنرسل إشعاراً إلى ${email} عند الإطلاق.`);
+      } else {
+        alert(`Thank you! We'll notify ${email} when we launch.`);
+      }
+      
       document.getElementById('notification-form').reset();
       return false;
     }
