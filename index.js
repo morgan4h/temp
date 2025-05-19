@@ -3,9 +3,9 @@ let buttons = document.querySelectorAll('button')
 let chName;
 function redirect(number) {
   if(number == '2') {
-    window.open('coming-soon.html')
+    window.open('https://t.me/morgan4tmk')
   }else if (number == '3') {
-    window.open('https://discord.gg/srEmeNMx')
+    window.open('https://discord.gg/meh7tCrxRw')
   }else if (number == '4') {
     window.open('https://github.com/morgan4h')
   }else if(number == '5') {
