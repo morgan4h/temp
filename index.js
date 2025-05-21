@@ -110,7 +110,7 @@ const translations = {
     contact: "الترفيه",
     headerTitle: "هذه نسخة مؤقتة من الموقع",
     headerSub: "لتسهيل التواصل معا",
-    card1Title: "إنستغرام",
+    card1Title: "تلغرام",
     card1Desc: "أنا متاح للدردشة والإجابة على أي أسئلة قد تكون لديك.",
     card2Title: "ديسكورد",
     card2Desc: "دردش وتواصل مع مجتمعنا الحيوي.",
