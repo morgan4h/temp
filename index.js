@@ -3,7 +3,7 @@ let buttons = document.querySelectorAll('button')
 let chName;
 function redirect(number) {
   if(number == '2') {
-    window.open('https://t.me/morgan4tmk')
+    window.open('https://t.me/+Vu123eEuGsVhMTZk')
   }else if (number == '3') {
     window.open('sorry.html')
   }else if (number == '4') {
