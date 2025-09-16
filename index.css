@@ -127,3 +127,7 @@ a {
         align-items: center;
     }
 }
+
+ul li {
+    cursor: pointer;
+}
