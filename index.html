@@ -1,180 +1,266 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Connect With Me</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Connect With Me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 
-    <style>
-        /* RESET */
-        * {
-            box-sizing: border-box;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at top, #0f172a, #020617);
-            font-family: "Segoe UI", system-ui, sans-serif;
-            padding: 20px;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      font-family: "Segoe UI", system-ui, sans-serif;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
 
-        /* CARD */
-        .card {
-            background: rgba(30, 41, 59, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 18px;
-            width: 100%;
-            max-width: 420px;   /* phone default */
-            padding: 28px;
-            text-align: center;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.5);
-            animation: fadeUp 0.8s ease;
-        }
+    .card {
+      width: 100%;
+      max-width: 520px;
+      background: rgba(30, 41, 59, 0.88);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 25px 50px rgba(0,0,0,.55);
+      animation: fadeUp .8s ease;
+    }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-        h1 {
-            color: #fff;
-            margin-bottom: 22px;
-            font-size: 22px;
-        }
+    h1 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 26px;
+    }
 
-        /* BUTTONS */
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 16px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 600;
-            text-decoration: none;
-            color: #fff;
-            transition: transform 0.2s ease,
-                        box-shadow 0.2s ease,
-                        background 0.3s ease;
-        }
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
 
-        .btn i {
-            font-size: 18px;
-        }
+    /* SOCIAL ITEM */
+    .social-item {
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 18px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
 
-        .btn-x {
-            background: linear-gradient(135deg, #1da1f2, #0c4a6e);
-        }
+    .social-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.45);
+    }
 
-        .btn-yt {
-            background: linear-gradient(135deg, #ff0000, #b91c1c);
-        }
+    .social-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 26px rgba(0,0,0,0.45);
-        }
+    .icon {
+      font-size: 22px;
+    }
 
-        .btn:active {
-            transform: scale(0.97);
-        }
+    .title {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+    }
 
-        .hint {
-            margin-top: 12px;
-            color: #94a3b8;
-            font-size: 13px;
-        }
+    .desc {
+      color: #9ca3af;
+      font-size: 14px;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
 
-        /* ==========================
-           DESKTOP ENHANCEMENTS
-           ========================== */
-        @media (min-width: 768px) {
-            .card {
-                max-width: 520px;
-                padding: 40px;
-            }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #fff;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
 
-            h1 {
-                font-size: 28px;
-                margin-bottom: 30px;
-            }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.4);
+    }
 
-            .btn {
-                font-size: 17px;
-                padding: 18px;
-            }
+    .btn:active {
+      transform: scale(.97);
+    }
 
-            .btn i {
-                font-size: 22px;
-            }
+    /* PLATFORM COLORS */
+    .x      { color:#1da1f2; }
+    .x-btn  { background: linear-gradient(135deg,#1da1f2,#0c4a6e); }
 
-            .hint {
-                font-size: 14px;
-            }
-        }
-    </style>
+    .yt     { color:#ff0000; }
+    .yt-btn { background: linear-gradient(135deg,#ff0000,#b91c1c); }
+
+    .mail     { color:#22c55e; }
+    .mail-btn { background: linear-gradient(135deg,#22c55e,#15803d); }
+
+    .disc     { color:#5865F2; }
+    .disc-btn { background: linear-gradient(135deg,#5865F2,#3730a3); }
+
+    /* SCROLL HINT */
+    .scroll-hint {
+      text-align: center;
+      margin-top: 12px;
+      color: #94a3b8;
+      font-size: 13px;
+      animation: bounce 1.8s infinite;
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(6px); }
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 22px;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .card { padding: 40px; }
+      h1 { font-size: 30px; }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="card">
+    <h1>Let’s Connect</h1>
+    <div class="subtitle">Choose your favorite platform below</div>
 
-    <div class="card">
-        <h1>Let’s Connect</h1>
+  
 
-        <a href="https://x.com/nothing0qw"
-           target="_blank"
-           class="btn btn-x">
-            <i class="fa-brands fa-x-twitter"></i>
-            Follow on X
-        </a>
+    <!-- YouTube SOFAI -->
+    <div class="social-item">
+      <div class="social-header">
+        <i class="fa-brands fa-youtube icon yt"></i>
+        <div class="title">SOFAI Channel</div>
+      </div>
+      <div class="desc">
+        AI content, experiments, and smart tech explained simply.
+      </div>
+      <a href="https://www.youtube.com/@SOFAI4H" target="_blank" class="btn yt-btn">
+        Subscribe
+      </a>
+    </div>
+  
 
-        <a href="https://www.youtube.com/@SOFAI4H"
-           target="_blank"
-           class="btn btn-yt">
-            <i class="fa-brands fa-youtube"></i>
-            Subscribe on [SOFAI]
-        </a>
-
-            <a href="https://www.youtube.com/@morgan4h"
-           target="_blank"
-           class="btn btn-yt">
-            <i class="fa-brands fa-youtube"></i>
-            Subscribe on [MORGAN]]
-        </a>
-
-            <a href="https://www.youtube.com/@tmk4h"
-           target="_blank"
-           class="btn btn-yt">
-            <i class="fa-brands fa-youtube"></i>
-            Subscribe on [TMK]
-        </a>
-
-           <a href="mailto:4h0ads0now@gmail.com"
-           target="_blank"
-           class="btn btn-x">
-            <i class="fa-brands fa-x-twitter"></i>
-            Email Us
-        </a>
-
-        <div class="hint">
-           craeted by chatGPT || edited by me (:)
-        </div>
+        <!-- Discord -->
+    <div class="social-item">
+      <div class="social-header">
+        <i class="fa-brands fa-discord icon disc"></i>
+        <div class="title">Discord Community</div>
+      </div>
+      <div class="desc">
+        Join our community, chat, share ideas, and get updates.
+      </div>
+      <a href="https://discord.gg/phebahjH" target="_blank" class="btn disc-btn">
+        Join Server
+      </a>
     </div>
 
+    <!-- YouTube MORGAN -->
+    <div class="social-item">
+      <div class="social-header">
+        <i class="fa-brands fa-youtube icon yt"></i>
+        <div class="title">MORGAN Channel</div>
+      </div>
+      <div class="desc">
+        Creative content, ideas, and unique perspectives.
+      </div>
+      <a href="https://www.youtube.com/@morgan4h" target="_blank" class="btn yt-btn">
+        Subscribe
+      </a>
+    </div>
+
+          <div class="scroll-hint">
+      ↓ More platforms below
+    </div>
+
+        <!-- Email -->
+    <div class="social-item">
+      <div class="social-header">
+        <i class="fa-solid fa-envelope icon mail"></i>
+        <div class="title">Email Us</div>
+      </div>
+      <div class="desc">
+        For business inquiries, support, or collaborations.
+      </div>
+      <a href="mailto:4h0ads0now@gmail.com" class="btn mail-btn">
+        Send Email
+      </a>
+    </div>
+
+    <!-- YouTube TMK -->
+    <div class="social-item">
+      <div class="social-header">
+        <i class="fa-brands fa-youtube icon yt"></i>
+        <div class="title">TMK Channel</div>
+      </div>
+      <div class="desc">
+        Tech, media, and knowledge-focused videos.
+      </div>
+      <a href="https://www.youtube.com/@tmk4h" target="_blank" class="btn yt-btn">
+        Subscribe
+      </a>
+    </div>
+
+      <!-- X -->
+    <div class="social-item">
+      <div class="social-header">
+        <i class="fa-brands fa-x-twitter icon x"></i>
+        <div class="title">X (Twitter)</div>
+      </div>
+      <div class="desc">
+        Follow us on X for quick updates, thoughts, and announcements.
+      </div>
+      <a href="https://x.com/nothing0qw" target="_blank" class="btn x-btn">
+        Follow on X
+      </a>
+    </div>
+
+
+
+
+
+
+    <div class="footer">
+      created by ChatGPT • edited by me 🙂
+    </div>
+  </div>
 </body>
 </html>
