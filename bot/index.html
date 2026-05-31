@@ -1,86 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bot Free Fire Sofai 4H</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SofAI 4H</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: Arial, sans-serif;
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#0d0d14;
+    color:white;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(20,20,35,.95);
+    border-bottom:1px solid #8a2be2;
+    box-shadow:0 0 20px #8a2be280;
+}
+
+nav h1{
+    color:#b56cff;
+    font-size:1.5rem;
+    text-shadow:0 0 10px #b56cff;
+}
+
+.nav-links{
+    display:flex;
+    gap:15px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+    font-size:.9rem;
+}
+
+.nav-links a:hover{
+    color:#b56cff;
+    text-shadow:0 0 10px #b56cff;
+}
+
+/* MAIN */
+
+.container{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+}
+
+.title{
+    font-size:2rem;
+    color:#d7b3ff;
+    text-shadow:0 0 20px #8a2be2;
+    margin-bottom:20px;
+}
+
+.countdown{
+    font-size:5rem;
+    font-weight:bold;
+    color:#b56cff;
+    text-shadow:
+        0 0 10px #b56cff,
+        0 0 30px #8a2be2,
+        0 0 60px #8a2be2;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+button{
+    margin-top:30px;
+    padding:14px 35px;
+    border:none;
+    border-radius:30px;
+    background:#8a2be2;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+    display:none;
+    transition:.3s;
+    box-shadow:0 0 20px #8a2be2;
+}
+
+button:hover{
+    background:#a855ff;
+    transform:translateY(-3px);
+}
+
+.language-box{
+    position:fixed;
+    inset:0;
+    background:#000000ee;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.language-card{
+    background:#161625;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    border:1px solid #8a2be2;
+    box-shadow:0 0 30px #8a2be2;
+}
+
+.language-card h2{
+    margin-bottom:20px;
+}
+
+.lang-btns{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+}
+
+.lang-btns button{
+    display:block;
+    margin:0;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    nav{
+        flex-direction:column;
+        gap:10px;
     }
 
-    body{
-      background: linear-gradient(135deg, #4b0082, #7b2cbf);
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:20px;
-      color:white;
-      text-align:center;
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
     }
 
-    .container{
-      background: rgba(255,255,255,0.08);
-      padding:40px 25px;
-      border-radius:20px;
-      max-width:500px;
-      width:100%;
-      backdrop-filter: blur(8px);
-      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    .title{
+        font-size:1.5rem;
     }
 
-    h1{
-      font-size:2.2rem;
-      margin-bottom:20px;
-      color:#ffffff;
+    .countdown{
+        font-size:4rem;
     }
-
-    p{
-      font-size:1.1rem;
-      line-height:1.7;
-      color:#f3e8ff;
-    }
-
-    .emoji{
-      font-size:2rem;
-      margin-top:20px;
-    }
-
-    @media (max-width:600px){
-      h1{
-        font-size:1.8rem;
-      }
-
-      p{
-        font-size:1rem;
-      }
-
-      .container{
-        padding:30px 20px;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>🔥 Bot Free Fire Sofai 4H 🔥</h1>
+<nav>
+    <h1>SofAI 4H</h1>
 
-    <p>
-      We are working very hard on this project 💜✨<br><br>
-      The bot will be available soon 🚀🎮<br>
-      Stay tuned for something amazing 😎🔥
-    </p>
+    <div class="nav-links">
+        <a href="https://youtube.com/@sofai4h" target="_blank">
+            SofAI 4H
+        </a>
 
-    <div class="emoji">
-      💜 🤖 🎯 🚀
+        <a href="https://youtube.com/@morgan4h" target="_blank">
+            Morgan 4H
+        </a>
+
+        <a href="https://youtube.com/@tmk4h" target="_blank">
+            TMK 4H
+        </a>
     </div>
-  </div>
+</nav>
+
+<div id="languageBox" class="language-box">
+    <div class="language-card">
+        <h2>Choose Language</h2>
+
+        <div class="lang-btns">
+            <button onclick="setLanguage('en')">
+                English
+            </button>
+
+            <button onclick="setLanguage('ar')">
+                العربية
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="title" id="title">
+        Bot SofAI 4H is Ready
+    </h2>
+
+    <div class="countdown" id="countdown">
+        5
+    </div>
+
+    <button id="startBtn">
+        Start
+    </button>
+</div>
+
+<script>
+const title = document.getElementById("title");
+const countdown = document.getElementById("countdown");
+const startBtn = document.getElementById("startBtn");
+const languageBox = document.getElementById("languageBox");
+
+function applyLanguage(lang){
+
+    if(lang === "ar"){
+        document.documentElement.lang = "ar";
+        document.body.dir = "rtl";
+
+        title.textContent = "بوت سوفاي 4H جاهز";
+        startBtn.textContent = "ابدأ";
+    }else{
+        document.documentElement.lang = "en";
+        document.body.dir = "ltr";
+
+        title.textContent = "Bot SofAI 4H is Ready";
+        startBtn.textContent = "Start";
+    }
+}
+
+function setLanguage(lang){
+    localStorage.setItem("sofai_lang", lang);
+    localStorage.setItem("sofai_first_visit", "done");
+
+    applyLanguage(lang);
+
+    languageBox.style.display = "none";
+
+    startCountdown();
+}
+
+function startCountdown(){
+
+    let count = 5;
+
+    countdown.textContent = count;
+
+    const timer = setInterval(() => {
+
+        count--;
+
+        countdown.textContent = count;
+
+        if(count <= 0){
+            clearInterval(timer);
+
+            countdown.innerHTML = "🚀";
+
+            startBtn.style.display = "inline-block";
+        }
+
+    },1000);
+}
+
+const savedLang = localStorage.getItem("sofai_lang");
+const firstVisit = localStorage.getItem("sofai_first_visit");
+
+if(savedLang){
+    applyLanguage(savedLang);
+}
+
+if(firstVisit){
+    languageBox.style.display = "none";
+
+    countdown.style.display = "none";
+
+    startBtn.style.display = "inline-block";
+}else{
+    languageBox.style.display = "flex";
+}
+
+startBtn.addEventListener("click", () => {
+   location.href = 'https://botsofai4h.bonto.run/'
+});
+</script>
 
 </body>
 </html>
