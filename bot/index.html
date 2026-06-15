@@ -1,590 +1,658 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SofAI 4H - Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SofAI 4H - Portal</title>
+    <style>
+        /* GLOBAL SETTINGS */
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+        body{
+            background:#08080f;
+            color:#e2e2e9;
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            overflow-x:hidden;
+        }
 
-body{
-    background:#08080f;
-    color:#e2e2e9;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    overflow-x:hidden;
-}
+        /* NAVBAR DESIGN */
+        nav{
+            width:100%;
+            padding:15px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            background:#111122;
+            border-bottom:1px solid #2d1a4d;
+            box-shadow:0 4px 20px rgba(0,0,0,0.4);
+        }
 
-/* NAVBAR */
-nav{
-    width:100%;
-    padding:15px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#111122;
-    border-bottom:1px solid #2d1a4d;
-    box-shadow:0 4px 20px rgba(0,0,0,0.4);
-}
+        nav h1{
+            color:#b56cff;
+            font-size:1.4rem;
+            font-weight:700;
+            text-shadow:0 0 10px rgba(181,108,255,0.3);
+        }
 
-nav h1{
-    color:#b56cff;
-    font-size:1.4rem;
-    font-weight:700;
-    text-shadow:0 0 10px rgba(181,108,255,0.3);
-}
+        .nav-links{
+            display:flex;
+            gap:20px;
+        }
 
-.nav-links{
-    display:flex;
-    gap:20px;
-}
+        .nav-links a{
+            color:#a3a3c2;
+            text-decoration:none;
+            transition:.2s ease;
+            font-size:.85rem;
+            font-weight: 500;
+        }
 
-.nav-links a{
-    color:#a3a3c2;
-    text-decoration:none;
-    transition:.2s ease;
-    font-size:.85rem;
-    font-weight: 500;
-}
+        .nav-links a:hover{
+            color:#b56cff;
+        }
 
-.nav-links a:hover{
-    color:#b56cff;
-}
+        /* GRID CONTAINER */
+        .container{
+            flex:1;
+            max-width:1140px;
+            width:100%;
+            margin:40px auto;
+            padding:0 20px;
+            display:grid;
+            grid-template-columns: 1fr 340px;
+            gap:30px;
+            align-items: start;
+        }
 
-/* MAIN LAYOUT */
-.container{
-    flex:1;
-    max-width:1140px;
-    width:100%;
-    margin:40px auto;
-    padding:0 20px;
-    display:grid;
-    grid-template-columns: 1fr 340px;
-    gap:30px;
-    align-items: start;
-}
+        /* CENTRAL PORTAL CARD */
+        .download-main{
+            background:#121225;
+            border-radius:12px;
+            border:1px solid #2d1a4d;
+            padding:40px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            box-shadow:0 10px 30px rgba(0,0,0,0.2);
+        }
 
-/* DOWNLOAD PORTAL */
-.download-main{
-    background:#121225;
-    border-radius:12px;
-    border:1px solid #2d1a4d;
-    padding:40px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
+        .file-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2d1a4d, #8a2be2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+        }
 
-.file-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #2d1a4d, #8a2be2);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
-}
+        .title{
+            font-size:1.8rem;
+            color:#ffffff;
+            font-weight: 600;
+            margin-bottom:8px;
+        }
 
-.title{
-    font-size:1.8rem;
-    color:#ffffff;
-    font-weight: 600;
-    margin-bottom:8px;
-}
+        .file-info-meta {
+            font-size: 0.85rem;
+            color: #71719c;
+            margin-bottom: 30px;
+        }
 
-.file-info-meta {
-    font-size: 0.85rem;
-    color: #71719c;
-    margin-bottom: 30px;
-}
+        .countdown-wrapper {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.countdown-wrapper {
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .countdown{
+            font-size:3.5rem;
+            font-weight:bold;
+            color:#b56cff;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+        }
 
-.countdown{
-    font-size:3.5rem;
-    font-weight:bold;
-    color:#b56cff;
-    text-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
-}
+        .pulse {
+            animation: pulse-anim 1s infinite;
+        }
 
-.pulse {
-    animation: pulse-anim 1s infinite;
-}
+        @keyframes pulse-anim{
+            50%{ transform:scale(1.05); }
+        }
 
-@keyframes pulse-anim{
-    50%{ transform:scale(1.05); }
-}
+        .main-dl-btn{
+            width: 100%;
+            max-width: 400px;
+            padding:16px 40px;
+            border:none;
+            border-radius:8px;
+            background:#8a2be2;
+            color:white;
+            font-size:1.1rem;
+            font-weight: 600;
+            cursor:pointer;
+            display:none;
+            transition:.2s ease;
+            box-shadow:0 6px 20px rgba(138, 43, 226, 0.4);
+            text-align: center;
+        }
 
-.main-dl-btn{
-    width: 100%;
-    max-width: 400px;
-    padding:16px 40px;
-    border:none;
-    border-radius:8px;
-    background:#8a2be2;
-    color:white;
-    font-size:1.1rem;
-    font-weight: 600;
-    cursor:pointer;
-    display:none;
-    transition:.2s ease;
-    box-shadow:0 6px 20px rgba(138, 43, 226, 0.4);
-    text-align: center;
-}
+        .main-dl-btn:hover{
+            background:#9d42f5;
+            transform:translateY(-2px);
+            box-shadow:0 8px 25px rgba(138, 43, 226, 0.6);
+        }
 
-.main-dl-btn:hover{
-    background:#9d42f5;
-    transform:translateY(-2px);
-    box-shadow:0 8px 25px rgba(138, 43, 226, 0.6);
-}
+        /* SIDEBAR AND PLATFORM TOOLS */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-/* SIDEBAR TOOLS */
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+        .sidebar-card {
+            background: #121225;
+            border-radius: 12px;
+            border: 1px solid #2d1a4d;
+            padding: 24px;
+        }
 
-.sidebar-card {
-    background: #121225;
-    border-radius: 12px;
-    border: 1px solid #2d1a4d;
-    padding: 24px;
-}
+        .sidebar-card h3 {
+            font-size: 1rem;
+            color: #b56cff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-.sidebar-card h3 {
-    font-size: 1rem;
-    color: #b56cff;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        .tool-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #191932;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 10px;
+            border: 1px solid transparent;
+            transition: 0.2s ease;
+        }
 
-.tool-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #191932;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-    margin-bottom: 10px;
-    border: 1px solid transparent;
-    transition: 0.2s ease;
-}
+        .tool-link:last-child {
+            margin-bottom: 0;
+        }
 
-.tool-link:last-child {
-    margin-bottom: 0;
-}
+        .tool-link:hover {
+            border-color: #8a2be2;
+            background: #1e1e3d;
+        }
 
-.tool-link:hover {
-    border-color: #8a2be2;
-    background: #1e1e3d;
-}
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            background: #252545;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
 
-.tool-icon {
-    width: 40px;
-    height: 40px;
-    background: #252545;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-}
+        .tool-details span {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
 
-.tool-details span {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
+        .tool-details small {
+            font-size: 0.75rem;
+            color: #71719c;
+        }
 
-.tool-details small {
-    font-size: 0.75rem;
-    color: #71719c;
-}
+        /* Bypass Grid Core Section inside Sidebar */
+        .bypass-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #2d1a4d;
+        }
 
-/* MODALS / OVERLAYS */
-.modal-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(5, 5, 10, 0.85);
-    backdrop-filter: blur(8px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:999;
-    padding: 20px;
-}
+        .red-line, .red-divider {
+            width: 80px;
+            height: 3px;
+            background-color: #ff0000;
+            margin: 8px 0 12px 0;
+            border-radius: 10px;
+        }
 
-.modal-card{
-    background:#121225;
-    padding:30px;
-    border-radius:16px;
-    border:1px solid #8a2be2;
-    box-shadow:0 10px 40px rgba(138, 43, 226, 0.3);
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
-    max-height: 90vh;
-    overflow-y: auto;
-}
+        body[dir="rtl"] .red-line, body[dir="rtl"] .red-divider {
+            margin-right: 0;
+            margin-left: auto;
+        }
 
-.modal-card h2{
-    font-size: 1.3rem;
-    margin-bottom:15px;
-    color: #b56cff;
-}
+        .btn-group-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
 
-.info-box-desc {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #a3a3c2;
-    margin-bottom: 20px;
-}
+        .dest-btn.sub-tool {
+            width: 100%;
+            padding: 10px;
+            background: #252545;
+            color: white;
+            border: 1px solid #3d3d66;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
 
-/* DESTINATION BOX OPTIONS */
-.destination-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-}
+        .dest-btn.sub-tool:hover {
+            background: #ff0000;
+            border-color: #ff0000;
+        }
 
-.dest-box {
-    background: #191932;
-    border: 1px solid #2d1a4d;
-    border-radius: 10px;
-    padding: 16px;
-    text-align: left;
-    transition: 0.2s;
-}
+        /* WINDOW MODAL OVERLAYS */
+        .modal-overlay{
+            position:fixed;
+            inset:0;
+            background:rgba(5, 5, 10, 0.85);
+            backdrop-filter: blur(8px);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            z-index:999;
+            padding: 20px;
+        }
 
-body[dir="rtl"] .dest-box {
-    text-align: right;
-}
+        .modal-card{
+            background:#121225;
+            padding:30px;
+            border-radius:16px;
+            border:1px solid #8a2be2;
+            box-shadow:0 10px 40px rgba(138, 43, 226, 0.3);
+            max-width: 540px;
+            width: 100%;
+            text-align: center;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
 
-.dest-box:hover {
-    border-color: #8a2be2;
-    background: #1e1e3d;
-}
+        .modal-card h2{
+            font-size: 1.3rem;
+            margin-bottom:15px;
+            color: #b56cff;
+        }
 
-.dest-box h4 {
-    color: #ffffff;
-    font-size: 1rem;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+        .info-box-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #a3a3c2;
+            margin-bottom: 20px;
+        }
 
-.dest-box p {
-    color: #71719c;
-    font-size: 0.8rem;
-    line-height: 1.4;
-    margin-bottom: 12px;
-}
+        /* NAVIGATION PORTALS CONFIG */
+        .destination-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
 
-.dest-btn {
-    width: 100%;
-    padding: 10px;
-    background: #8a2be2;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: 0.2s;
-}
+        .dest-box {
+            position: relative;
+            background: #191932;
+            border: 1px solid #2d1a4d;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: left;
+            transition: 0.2s;
+        }
 
-.dest-btn:hover {
-    background: #9d42f5;
-}
+        body[dir="rtl"] .dest-box {
+            text-align: right;
+        }
 
-.action-btn-secondary {
-    padding: 12px;
-    background: transparent;
-    border: 1px solid #2d1a4d;
-    color: #a3a3c2;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: 0.2s;
-    width: 100%;
-}
+        .dest-box:hover {
+            border-color: #8a2be2;
+            background: #1e1e3d;
+        }
 
-.action-btn-secondary:hover {
-    background: #191932;
-    color: white;
-}
+        .dest-box h4 {
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.lang-btns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    width: 100%;
-}
+        .dest-box p {
+            color: #71719c;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
 
-.lang-btns button {
-    padding: 12px;
-    background: #191932;
-    border: 1px solid #2d1a4d;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.2s;
-}
+        .dest-btn {
+            width: 100%;
+            padding: 10px;
+            background: #8a2be2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
 
-.lang-btns button:hover {
-    background: #8a2be2;
-    border-color: #8a2be2;
-}
+        .dest-btn:hover {
+            background: #9d42f5;
+        }
 
-/* RESPONSIVENESS */
-@media(max-width:768px){
-    nav{
-        padding: 15px 20px;
-        flex-direction:column;
-        gap:12px;
-    }
-    .nav-links{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-    .container{
-        grid-template-columns: 1fr;
-        margin: 20px auto;
-    }
-    .download-main {
-        padding: 30px 20px;
-    }
-}
-</style>
+        .action-btn-secondary {
+            padding: 12px;
+            background: transparent;
+            border: 1px solid #2d1a4d;
+            color: #a3a3c2;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
+            width: 100%;
+        }
+
+        .action-btn-secondary:hover {
+            background: #191932;
+            color: white;
+        }
+
+        .lang-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .lang-btns button {
+            padding: 12px;
+            background: #191932;
+            border: 1px solid #2d1a4d;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .lang-btns button:hover {
+            background: #8a2be2;
+            border-color: #8a2be2;
+        }
+
+        /* MOBILE VIEWPORTS MEDIA PORTALS */
+        @media(max-width:768px){
+            nav{
+                padding: 15px 20px;
+                flex-direction:column;
+                gap:12px;
+            }
+            .nav-links{
+                flex-wrap:wrap;
+                justify-content:center;
+            }
+            .container{
+                grid-template-columns: 1fr;
+                margin: 20px auto;
+            }
+            .download-main {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<nav>
-    <h1>SofAI 4H</h1>
-    <div class="nav-links">
-        <a href="https://youtube.com/@sofai4h" target="_blank">SofAI 4H</a>
-        <a href="https://youtube.com/@morgan4h" target="_blank">Morgan 4H</a>
-        <a href="https://youtube.com/@tmk4h" target="_blank">TMK 4H</a>
-    </div>
-</nav>
-
-<div id="languageBox" class="modal-overlay">
-    <div class="modal-card">
-        <h2>Choose Language / اختر اللغة</h2>
-        <div class="lang-btns">
-            <button onclick="setLanguage('en')">English</button>
-            <button onclick="setLanguage('ar')">العربية</button>
+    <nav>
+        <h1>SofAI 4H</h1>
+        <div class="nav-links">
+            <a href="https://youtube.com/@sofai4h" target="_blank">SofAI 4H</a>
+            <a href="https://youtube.com/@morgan4h" target="_blank">Morgan 4H</a>
+            <a href="https://youtube.com/@tmk4h" target="_blank">TMK 4H</a>
         </div>
-    </div>
-</div>
+    </nav>
 
-<div id="infoBox" class="modal-overlay" style="display: none;">
-    <div class="modal-card">
-        <h2 id="infoTitle">Select Destination Portal</h2>
-        <p class="info-box-desc" id="infoDesc">
-            Please choose the section you want to launch. If you need to download necessary backend configuration tools like PCAP or Termux first, close this box to stay on the home page.
-        </p>
-        
-        <div class="destination-container">
-            <div class="dest-box">
-                <h4 id="box1Title">🔗 Premium Download Link</h4>
-                <p id="box1Desc">Access secure server nodes to proceed with structural script updates and authorization keys.</p>
-                <button class="dest-btn" id="box1Btn" onclick="openLink('https://sfl.gl/p3dE1Hx3')">Launch Link</button>
-            </div>
-
-            <div class="dest-box">
-                <h4 id="box2Title">🎨 Info & Color Bot Server</h4>
-                <p id="box2Desc">Direct deployment console to manage bot features, display metrics, and customize custom workspace colors.</p>
-                <button class="dest-btn" id="box2Btn" onclick="openLink('https://botsofai4h.bonto.run/')">Go to Bot Platform</button>
+    <div id="languageBox" class="modal-overlay">
+        <div class="modal-card">
+            <h2>Choose Language / اختر اللغة</h2>
+            <div class="lang-btns">
+                <button onclick="setLanguage('en')">English</button>
+                <button onclick="setLanguage('ar')">العربية</button>
             </div>
         </div>
-
-        <button class="action-btn-secondary" id="btnBackHome" onclick="closeInfoBox()">Back to Home Page</button>
     </div>
-</div>
 
-<div class="container">
-    <main class="download-main">
-        <div class="file-icon">🤖</div>
-        <h2 class="title" id="title">Bot SofAI 4H is Ready</h2>
-        <div class="file-info-meta" id="metaInfo">Ready to initiate application package configuration</div>
-
-        <div class="countdown-wrapper">
-            <div class="countdown pulse" id="countdown">5</div>
-        </div>
-
-        <button id="startBtn" class="main-dl-btn">Start Download</button>
-    </main>
-
-    <aside class="sidebar">
-        <div class="sidebar-card">
-            <h3 id="toolsTitle">Required System Tools</h3>
+    <div id="infoBox" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <h2 id="infoTitle">Select Destination Portal</h2>
+            <p class="info-box-desc" id="infoDesc">
+                Please choose the section you want to launch. If you need to download necessary backend configuration tools like PCAP or Termux first, close this box to stay on the home page.
+            </p>
             
-            <a href="https://play.google.com/store/apps/details?id=com.termux" target="_blank" class="tool-link">
-                <div class="tool-icon">📟</div>
-                <div class="tool-details">
-                    <span>Termux Terminal</span>
-                    <small>Google Play Store</small>
+            <div class="destination-container">
+                <div class="dest-box">
+                    <h4 id="box1Title">🔗 Premium Download Link</h4>
+                    <p id="box1Desc">Access secure server nodes to proceed with structural script updates and authorization keys.</p>
+                    <button class="dest-btn" id="box1Btn" onclick="openLink('https://sfl.gl/p3dE1Hx3')">Launch Link</button>
                 </div>
-            </a>
 
-            <a href="https://play.google.com/store/apps/details?id=com.emanuelef.remote_capture" target="_blank" class="tool-link">
-                <div class="tool-icon">🌐</div>
-                <div class="tool-details">
-                    <span>PCAP Capture</span>
-                    <small>Google Play Store</small>
+                <div class="dest-box">
+                    <h4 id="box2Title">🎨 Info & Color Bot Server</h4>
+                    <p id="box2Desc">Direct deployment console to manage bot features, display metrics, and customize custom workspace colors.</p>
+                    <button class="dest-btn" id="box2Btn" onclick="openLink('https://botsofai4h.bonto.run/')">Go to Bot Platform</button>
                 </div>
-            </a>
+            </div>
+
+            <button class="action-btn-secondary" id="btnBackHome" onclick="closeInfoBox()">Back to Home Page</button>
         </div>
-    </aside>
-</div>
+    </div>
 
-<script>
-const title = document.getElementById("title");
-const countdown = document.getElementById("countdown");
-const startBtn = document.getElementById("startBtn");
-const languageBox = document.getElementById("languageBox");
-const metaInfo = document.getElementById("metaInfo");
-const toolsTitle = document.getElementById("toolsTitle");
-const infoBox = document.getElementById("infoBox");
+    <div class="container">
+        <main class="download-main">
+            <div class="file-icon">🤖</div>
+            <h2 class="title" id="title">Bot SofAI 4H is Ready</h2>
+            <div class="file-info-meta" id="metaInfo">Ready to initiate application package configuration</div>
 
-// Modal Elements Translation Variables
-const infoTitle = document.getElementById("infoTitle");
-const infoDesc = document.getElementById("infoDesc");
-const box1Title = document.getElementById("box1Title");
-const box1Desc = document.getElementById("box1Desc");
-const box1Btn = document.getElementById("box1Btn");
-const box2Title = document.getElementById("box2Title");
-const box2Desc = document.getElementById("box2Desc");
-const box2Btn = document.getElementById("box2Btn");
-const btnBackHome = document.getElementById("btnBackHome");
+            <div class="countdown-wrapper">
+                <div class="countdown pulse" id="countdown">5</div>
+            </div>
 
-function applyLanguage(lang){
-    if(lang === "ar"){
-        document.documentElement.lang = "ar";
-        document.body.dir = "rtl";
+            <button id="startBtn" class="main-dl-btn">Start Download</button>
+        </main>
 
-        title.textContent = "بوت سوفاي 4H جاهز";
-        metaInfo.textContent = "جاهز لبدء تكوين حزمة التطبيق الخاص بك";
-        toolsTitle.textContent = "أدوات النظام المطلوبة";
-        startBtn.textContent = "ابدأ التحميل";
-        
-        // Modal Arabic Translation
-        infoTitle.textContent = "اختر بوابة الوجهة";
-        infoDesc.textContent = "يرجى اختيار القسم الذي ترغب في تشغيله. إذا كنت بحاجة إلى تحميل أدوات النظام الضرورية مثل PCAP أو Termux أولاً، يمكنك إغلاق هذه النافذة للبقاء في الصفحة الرئيسية.";
-        
-        box1Title.textContent = "🔗 رابط التحميل الأساسي";
-        box1Desc.textContent = "الوصول إلى خوادم آمنة لمتابعة تحديثات السكربت الهيكلية ومفاتيح الترخيص.";
-        box1Btn.textContent = "تشغيل الرابط";
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3 id="toolsTitle">Required System Tools</h3>
+                
+                <a href="https://play.google.com/store/apps/details?id=com.termux" target="_blank" class="tool-link">
+                    <div class="tool-icon">📟</div>
+                    <div class="tool-details">
+                        <span>Termux Terminal</span>
+                        <small>Google Play Store</small>
+                    </div>
+                </a>
 
-        box2Title.textContent = "🎨 خادم معلومات وبوت الألوان";
-        box2Desc.textContent = "لوحة التحكم المباشرة لإدارة خصائص البوت، عرض البيانات، وتخصيص ألوان واجهة العمل.";
-        box2Btn.textContent = "الانتقال إلى منصة البوت";
-        
-        btnBackHome.textContent = "العودة للصفحة الرئيسية وتحميل الأدوات";
-    } else {
-        document.documentElement.lang = "en";
-        document.body.dir = "ltr";
+                <a href="https://play.google.com/store/apps/details?id=com.emanuelef.remote_capture" target="_blank" class="tool-link">
+                    <div class="tool-icon">🌐</div>
+                    <div class="tool-details">
+                        <span>PCAP Capture</span>
+                        <small>Google Play Store</small>
+                    </div>
+                </a>
 
-        title.textContent = "Bot SofAI 4H is Ready";
-        metaInfo.textContent = "Ready to initiate application package configuration";
-        toolsTitle.textContent = "Required System Tools";
-        startBtn.textContent = "Start Download";
+                <div class="bypass-section">
+                    <h4 id="box3Title" style="font-size: 0.9rem; color:#ffffff; margin-bottom: 2px;">🛡️ Protection Bypass Core</h4>
+                    <div class="red-divider red-line"></div>
+                    <p id="box3Desc" style="font-size: 0.75rem; color:#71719c; margin-bottom: 12px; line-height:1.4;">Download required environmental packages and analysis tools to bypass infrastructure checks.</p>
+                    <div class="btn-group-row">
+                        <button class="dest-btn sub-tool" onclick="openLink('https://www.charlesproxy.com/download/')">Charles Proxy</button>
+                        <button class="dest-btn sub-tool" onclick="openLink('https://github.com/frida/frida/releases')">Frida Releases</button>
+                        <button class="dest-btn sub-tool" onclick="openLink('https://www.ldplayer.net/versions')">LDPlayer</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
 
-        // Modal English Translation
-        infoTitle.textContent = "Select Destination Portal";
-        infoDesc.textContent = "Please choose the section you want to launch. If you need to download necessary backend configuration tools like PCAP or Termux first, close this box to stay on the home page.";
-        
-        box1Title.textContent = "🔗 Premium Download Link";
-        box1Desc.textContent = "Access secure server nodes to proceed with structural script updates and authorization keys.";
-        box1Btn.textContent = "Launch Link";
+    <script>
+        console.log('start functions');
 
-        box2Title.textContent = "🎨 Info & Color Bot Server";
-        box2Desc.textContent = "Direct deployment console to manage bot features, display metrics, and customize custom workspace colors.";
-        box2Btn.textContent = "Go to Bot Platform";
-        
-        btnBackHome.textContent = "Back to Home Page";
-    }
-}
+        // Base DOM Elements
+        const title = document.getElementById("title");
+        const countdown = document.getElementById("countdown");
+        const startBtn = document.getElementById("startBtn");
+        const languageBox = document.getElementById("languageBox");
+        const metaInfo = document.getElementById("metaInfo");
+        const toolsTitle = document.getElementById("toolsTitle");
+        const infoBox = document.getElementById("infoBox");
 
-function setLanguage(lang){
-    localStorage.setItem("sofai_lang", lang);
-    localStorage.setItem("sofai_first_visit", "done");
+        // Selection Modals Translation targets
+        const infoTitle = document.getElementById("infoTitle");
+        const infoDesc = document.getElementById("infoDesc");
+        const box1Title = document.getElementById("box1Title");
+        const box1Desc = document.getElementById("box1Desc");
+        const box1Btn = document.getElementById("box1Btn");
+        const box2Title = document.getElementById("box2Title");
+        const box2Desc = document.getElementById("box2Desc");
+        const box2Btn = document.getElementById("box2Btn");
+        const box3Title = document.getElementById("box3Title");
+        const box3Desc = document.getElementById("box3Desc");
+        const btnBackHome = document.getElementById("btnBackHome");
 
-    applyLanguage(lang);
-    languageBox.style.display = "none";
-    startCountdown();
-}
+        // Dynamic Language Localizer Engine
+        function applyLanguage(lang){
+            if(lang === "ar"){
+                document.documentElement.lang = "ar";
+                document.body.dir = "rtl";
 
-function startCountdown(){
-    let count = 5;
-    countdown.textContent = count;
+                title.textContent = "بوت سوفاي 4H جاهز";
+                metaInfo.textContent = "جاهز لبدء تكوين حزمة التطبيق الخاص بك";
+                toolsTitle.textContent = "أدوات النظام المطلوبة";
+                startBtn.textContent = "ابدأ التحميل";
+                
+                infoTitle.textContent = "اختر بوابة الوجهة";
+                infoDesc.textContent = "يرجى اختيار القسم الذي ترغب في تشغيله. إذا كنت بحاجة إلى تحميل أدوات النظام الضرورية مثل PCAP أو Termux أولاً، يمكنك إغلاق هذه النافذة للبقاء في الصفحة الرئيسية.";
+                
+                box1Title.textContent = "🔗 رابط التحميل الأساسي";
+                box1Desc.textContent = "الوصول إلى خوادم آمنة لمتابعة تحديثات السكربت الهيكلية ومفاتيح الترخيص.";
+                box1Btn.textContent = "تشغيل الرابط";
 
-    const timer = setInterval(() => {
-        count--;
-        countdown.textContent = count;
+                box2Title.textContent = "🎨 خادم معلومات وبوت الألوان";
+                box2Desc.textContent = "لوحة التحكم المباشرة لإدارة خصائص البوت، عرض البيانات، وتخصيص ألوان واجهة العمل.";
+                box2Btn.textContent = "الانتقال إلى منصة البوت";
 
-        if(count <= 0){
-            clearInterval(timer);
-            countdown.classList.remove("pulse");
+                box3Title.textContent = "🛡️ تخطي حماية النظام";
+                box3Desc.textContent = "تنزيل الحزم البيئية المطلوبة وأدوات التحليل لتخطي فحوصات البنية التحتية للألعاب.";
+                
+                btnBackHome.textContent = "العودة للصفحة الرئيسية وتحميل الأدوات";
+            } else {
+                document.documentElement.lang = "en";
+                document.body.dir = "ltr";
+
+                title.textContent = "Bot SofAI 4H is Ready";
+                metaInfo.textContent = "Ready to initiate application package configuration";
+                toolsTitle.textContent = "Required System Tools";
+                startBtn.textContent = "Start Download";
+
+                infoTitle.textContent = "Select Destination Portal";
+                infoDesc.textContent = "Please choose the section you want to launch. If you need to download necessary backend configuration tools like PCAP or Termux first, close this box to stay on the home page.";
+                
+                box1Title.textContent = "🔗 Premium Download Link";
+                box1Desc.textContent = "Access secure server nodes to proceed with structural script updates and authorization keys.";
+                box1Btn.textContent = "Launch Link";
+
+                box2Title.textContent = "🎨 Info & Color Bot Server";
+                box2Desc.textContent = "Direct deployment console to manage bot features, display metrics, and customize custom workspace colors.";
+                box2Btn.textContent = "Go to Bot Platform";
+
+                box3Title.textContent = "🛡️ Protection Bypass Core";
+                box3Desc.textContent = "Download required environmental packages and analysis tools to bypass infrastructure checks.";
+                
+                btnBackHome.textContent = "Back to Home Page";
+            }
+        }
+
+        // Language Local Storage Handler
+        function setLanguage(lang){
+            localStorage.setItem("sofai_lang", lang);
+            localStorage.setItem("sofai_first_visit", "done");
+
+            applyLanguage(lang);
+            languageBox.style.display = "none";
+            startCountdown();
+        }
+
+        // Download Counter Timer
+        function startCountdown(){
+            let count = 5;
+            countdown.textContent = count;
+
+            const timer = setInterval(() => {
+                count--;
+                countdown.textContent = count;
+
+                if(count <= 0){
+                    clearInterval(timer);
+                    countdown.classList.remove("pulse");
+                    countdown.innerHTML = "⚡";
+                    startBtn.style.display = "block";
+                }
+            }, 1000);
+        }
+
+        // State Restorers On Window Page Boot
+        const savedLang = localStorage.getItem("sofai_lang");
+        const firstVisit = localStorage.getItem("sofai_first_visit");
+
+        if(savedLang){
+            applyLanguage(savedLang);
+        }
+
+        if(firstVisit){
+            languageBox.style.display = "none";
             countdown.innerHTML = "⚡";
             startBtn.style.display = "block";
+        } else {
+            languageBox.style.display = "flex";
         }
-    }, 1000);
-}
 
-const savedLang = localStorage.getItem("sofai_lang");
-const firstVisit = localStorage.getItem("sofai_first_visit");
+        // Action Trigger Bindings
+        startBtn.addEventListener("click", () => {
+            infoBox.style.display = "flex";
+        });
 
-if(savedLang){
-    applyLanguage(savedLang);
-}
+        function closeInfoBox() {
+            infoBox.style.display = "none";
+        }
 
-// Blocks configuration picker modal from showing back up on refresh 
-if(firstVisit){
-    languageBox.style.display = "none";
-    countdown.innerHTML = "⚡";
-    startBtn.style.display = "block";
-} else {
-    languageBox.style.display = "flex";
-}
-
-// Open Information Choice Box
-startBtn.addEventListener("click", () => {
-    infoBox.style.display = "flex";
-});
-
-function closeInfoBox() {
-    infoBox.style.display = "none";
-}
-
-function openLink(url) {
-    window.open(url, '_blank');
-}
-</script>
-
+        function openLink(url) {
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
