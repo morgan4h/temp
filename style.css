@@ -1,87 +1,319 @@
-/* General Reset */
-* {
+/* --- System Design Variables --- */
+:root {
+  --bg-color: #0b0e14;
+  --card-bg: #131722;
+  --card-border: #232936;
+  --text-main: #f0f6fc;
+  --text-muted: #8b949e;
+  
+  /* Accent Colors */
+  --accent-hacking: #00ff88;
+  --accent-podcast: #9d68ff;
+  --accent-docu: #ff4757;
+}
+
+/* --- Global Reset & Box Safety --- */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: #ffffff; /* Pure white background */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 10px;
-  color: #0f0f0f;
+  min-height: 100vh;
+  padding: 40px 16px;
+  overflow-x: hidden; /* Prevents side scrolling */
+}
+
+/* --- Header Section --- */
+.header {
+  text-align: center;
+  margin-bottom: 35px;
+  max-width: 650px;
+  width: 100%;
+}
+
+.sub-heading {
+  color: var(--accent-hacking);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 8px;
 }
 
 h1 {
-  margin-bottom: 50px;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  max-width: 800px;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 10px;
 }
 
-/* The Container for the Iframe */
-.up-invisible {
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* --- Cards Container --- */
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 620px;
+}
+
+/* --- Channel Cards --- */
+.channel-card {
+  width: 100%;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px;
   position: relative;
-  width: 600px; /* Fixed width for Desktop */
-  height: 180px;
-  background: #fdfdfd;
-  border-radius: 15px;
-  border: 1px solid #e5e5e5;
+  cursor: pointer;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  user-select: none;
 }
 
-/* Hover effect for Desktop */
-.up-invisible:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+.channel-card:hover {
+  transform: translateY(-4px);
 }
 
-/* The Red Divider Line */
-.red-line {
-  width: 150px;       /* Smaller line length */
-  height: 5px;        /* Thickness */
-  background-color: #ff0000; /* Modern YouTube Red */
-  margin: 30px 0;     /* Spacing between boxes */
+/* Dynamic Accent Glows */
+.channel-card.theme-hacking:hover {
+  border-color: var(--accent-hacking);
+  box-shadow: 0 10px 30px rgba(0, 255, 136, 0.12);
+}
+
+.channel-card.theme-podcast:hover {
+  border-color: var(--accent-podcast);
+  box-shadow: 0 10px 30px rgba(157, 104, 255, 0.12);
+}
+
+.channel-card.theme-docu:hover {
+  border-color: var(--accent-docu);
+  box-shadow: 0 10px 30px rgba(255, 71, 87, 0.12);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.category-badge {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.channel-info h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Status Badges */
+.status-badge {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-badge.active {
+  background-color: rgba(0, 255, 136, 0.1);
+  color: var(--accent-hacking);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.status-badge.upcoming {
+  background-color: rgba(139, 148, 158, 0.1);
+  color: var(--text-muted);
+  border: 1px solid rgba(139, 148, 158, 0.25);
+}
+
+/* Category Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.tag {
+  background-color: #1a202c;
+  color: var(--text-main);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #2d3748;
+}
+
+/* --- Iframe Box & Dark Mode Fix --- */
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+  height: 135px;
   border-radius: 10px;
+  overflow: hidden;
+  background-color: #07090e; /* Dark fallback */
+  border: 1px solid #1e2430;
+  margin-bottom: 14px;
 }
 
-/* The Iframe itself */
 .test {
   width: 100%;
   height: 100%;
+  border: none;
+  
+  /* CSS Filter: Turns third-party white embed into dark mode */
+  filter: invert(0.92) hue-rotate(180deg) contrast(1.1) brightness(0.95);
+  pointer-events: none; /* Passes clicks up to the parent card */
 }
 
-/* The Invisible Click-Catcher */
-.invisible {
+.click-shield {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: transparent;
-  cursor: pointer;
   z-index: 10;
 }
 
-/* --- Responsive Styles for Mobile --- */
-@media (max-width: 650px) {
-  h1 {
-    font-size: 1.4rem;
-    margin-bottom: 30px;
+/* Card Footer CTA */
+.card-footer {
+  text-align: right;
+}
+
+.click-prompt {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.channel-card:hover .click-prompt {
+  color: #ffffff;
+}
+
+/* Section Divider */
+.divider {
+  width: 2px;
+  height: 25px;
+  background: linear-gradient(180deg, var(--card-border) 0%, transparent 100%);
+  margin: 6px 0;
+}
+
+/* --- Custom Modal Styling --- */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(5, 7, 10, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-box {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 28px;
+  width: 90%;
+  max-width: 440px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
+  transition: transform 0.25s ease;
+}
+
+.modal-backdrop.is-open .modal-box {
+  transform: scale(1);
+}
+
+.modal-header {
+  margin-bottom: 12px;
+}
+
+.modal-badge {
+  font-size: 0.7rem;
+  color: var(--accent-podcast);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.modal-box h3 {
+  font-size: 1.3rem;
+  margin-top: 4px;
+}
+
+.modal-box p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.modal-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #232936;
+  color: #fff;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modal-btn:hover {
+  background-color: #30363d;
+}
+
+/* --- Responsive Formatting --- */
+@media (max-width: 600px) {
+  body {
+    padding: 24px 12px;
+  }
+  
+  .channel-card {
+    padding: 16px;
   }
 
-  .up-invisible {
-    width: 90%;      /* Relative to phone screen size */
-    height: 140px;   /* Slightly shorter on phones */
-  }
-
-  .red-line {
-    width: 80px;     /* Even smaller lines on mobile */
-    margin: 20px 0;
+  .iframe-wrapper {
+    height: 115px;
   }
 }

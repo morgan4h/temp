@@ -3,42 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Start Point</title>
+  <title>Which YouTube Channel Did You Come From?</title>
   <link rel="stylesheet" href="style.css">
+  
+  <!-- Modern Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <h1>Which YouTube channel did you come from?</h1>
+  <!-- Header Section -->
+  <header class="header">
+    <span class="sub-heading">Community Portal</span>
+    <h1>Which YouTube channel brought you here?</h1>
+    <p class="subtitle">Select your channel to access its exclusive community hub</p>
+  </header>
 
-  <div class="up-invisible">
-    <iframe 
-      class="test" 
-      frameborder="0"
-      src="https://livecounts.io/embed/youtube-live-subscriber-counter/UCYGFlVh_W9nu7OC0yP_XlBQ">
-    </iframe>
-    <div class="invisible"></div>
-  </div>
+  <!-- Main Cards Container -->
+  <main class="cards-container" id="cardsContainer">
 
-  <div class="red-line"></div>
+    <!-- CHANNEL 1: Hacking & Game Dev -->
+    <article 
+      class="channel-card theme-hacking up-invisible" 
+      data-type="active" 
+      data-url="https://sofai4h.page.gd/blog/blog-php/public/pages/community.html"
+      data-title="Hacking & Game Development"
+    >
+      <div class="card-header">
+        <div class="channel-info">
+          <span class="category-badge">Tech & Security</span>
+          <h2>Hacking & Game Development</h2>
+        </div>
+        <span class="status-badge active">Active</span>
+      </div>
 
-  <div class="up-invisible">
-    <iframe 
-      class="test" 
-      frameborder="0"
-      src="https://livecounts.io/embed/youtube-live-subscriber-counter/UCbbcUMXkc18HlNfHqJWUWnw">
-    </iframe>
-    <div class="invisible"></div>
-  </div>
+      <div class="tags">
+        <span class="tag">Ethical Hacking</span>
+        <span class="tag">Game Hacking</span>
+        <span class="tag">Reverse Engineering</span>
+        <span class="tag">Game Dev</span>
+      </div>
 
-  <div class="red-line"></div>
+      <div class="iframe-wrapper">
+        <iframe 
+          class="test" 
+          frameborder="0"
+          src="https://livecounts.io/embed/youtube-live-subscriber-counter/UCYGFlVh_W9nu7OC0yP_XlBQ">
+        </iframe>
+        <div class="click-shield"></div>
+      </div>
 
-  <div class="up-invisible">
-    <iframe 
-      class="test" 
-      frameborder="0" 
-      src="https://livecounts.io/embed/youtube-live-subscriber-counter/UCRkVG5eT3D4JgcXsM-xAQZg">
-    </iframe>
-    <div class="invisible"></div>
+      <div class="card-footer">
+        <span class="click-prompt">Enter Community Platform &rarr;</span>
+      </div>
+    </article>
+
+    <div class="divider"></div>
+
+    <!-- CHANNEL 2: Programming Podcast & Courses -->
+    <article 
+      class="channel-card theme-podcast up-invisible" 
+      data-type="upcoming" 
+      data-title="Programming Podcast & Courses"
+      data-desc="This community section is currently in production. We are building custom course portals and podcast discussion boards."
+    >
+      <div class="card-header">
+        <div class="channel-info">
+          <span class="category-badge">Education & Talks</span>
+          <h2>Programming Podcast & Courses</h2>
+        </div>
+        <span class="status-badge upcoming">Coming Soon</span>
+      </div>
+
+      <div class="tags">
+        <span class="tag">Programming</span>
+        <span class="tag">Podcasts</span>
+        <span class="tag">Motivation</span>
+        <span class="tag">Courses</span>
+      </div>
+
+      <div class="iframe-wrapper">
+        <iframe 
+          class="test" 
+          frameborder="0"
+          src="https://livecounts.io/embed/youtube-live-subscriber-counter/UCbbcUMXkc18HlNfHqJWUWnw">
+        </iframe>
+        <div class="click-shield"></div>
+      </div>
+
+      <div class="card-footer">
+        <span class="click-prompt">Check Availability &rarr;</span>
+      </div>
+    </article>
+
+    <div class="divider"></div>
+
+    <!-- CHANNEL 3: Documentaries & Mysteries -->
+    <article 
+      class="channel-card theme-docu up-invisible" 
+      data-type="upcoming" 
+      data-title="Documentaries & Mysteries"
+      data-desc="This channel section is launching soon! Get ready for deep-dive investigative documentaries and gaming mysteries."
+    >
+      <div class="card-header">
+        <div class="channel-info">
+          <span class="category-badge">Stories & Media</span>
+          <h2>Documentaries & Mysteries</h2>
+        </div>
+        <span class="status-badge upcoming">Coming Soon</span>
+      </div>
+
+      <div class="tags">
+        <span class="tag">Documentaries</span>
+        <span class="tag">Mysteries</span>
+        <span class="tag">Gaming Lore</span>
+      </div>
+
+      <div class="iframe-wrapper">
+        <iframe 
+          class="test" 
+          frameborder="0" 
+          src="https://livecounts.io/embed/youtube-live-subscriber-counter/UCRkVG5eT3D4JgcXsM-xAQZg">
+        </iframe>
+        <div class="click-shield"></div>
+      </div>
+
+      <div class="card-footer">
+        <span class="click-prompt">Check Availability &rarr;</span>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Custom Popup Modal for Coming Soon Channels -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="modal-badge">Coming Soon</span>
+        <h3 id="modalTitle">Channel Portal</h3>
+      </div>
+      <p id="modalDescription">Content is coming soon.</p>
+      <button class="modal-btn" id="modalCloseBtn">Got it</button>
+    </div>
   </div>
 
   <script src="app.js"></script>
