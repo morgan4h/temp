@@ -9,185 +9,138 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Noto+Sans+JP:wght@700;900&family=Tajawal:wght@700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
-  <!-- Persistent Language Switcher Button (Top Right) -->
-  <button class="lang-trigger-btn" id="openLangBtn">
-    <span>言語 / LANG</span>
-  </button>
-
-  <!-- First-Time Visit Language Modal -->
+  <!-- Language Modal -->
+  <button class="lang-trigger-btn" id="openLangBtn"><span>言語 / LANG</span></button>
   <div class="lang-backdrop" id="langBackdrop">
     <div class="lang-box">
-      <div class="card-corner-tl"></div>
-      <div class="card-corner-br"></div>
+      <div class="card-corner-tl"></div><div class="card-corner-br"></div>
       <span class="badge-jp">言語選択 • LANGUAGE SELECT</span>
       <h2>Choose Interface Language</h2>
-      <p>Select your language. Japanese accents will remain across all modes.</p>
-      
+      <p>Select your language.</p>
       <div class="lang-options">
-        <button class="lang-btn" data-lang="en">
-          <span class="btn-jp">英語</span>
-          <span class="btn-en">English</span>
-        </button>
-        <button class="lang-btn" data-lang="ja">
-          <span class="btn-jp">日本語</span>
-          <span class="btn-en">Japanese</span>
-        </button>
-        <button class="lang-btn" data-lang="ar">
-          <span class="btn-jp">アラビア語</span>
-          <span class="btn-en">العربية</span>
-        </button>
+        <button class="lang-btn" data-lang="en"><span class="btn-jp">英語</span><span class="btn-en">English</span></button>
+        <button class="lang-btn" data-lang="ja"><span class="btn-jp">日本語</span><span class="btn-en">Japanese</span></button>
+        <button class="lang-btn" data-lang="ar"><span class="btn-jp">アラビア語</span><span class="btn-en">العربية</span></button>
       </div>
     </div>
   </div>
 
-  <!-- Background Kanji Overlay -->
-  <div class="jp-bg" aria-hidden="true">
-    <span>選択</span><span>未来</span><span>開発</span><span>接続</span>
-  </div>
-
-  <header class="header">
-    <div class="badge-jp">コミュニティ • Portal Access</div>
-    
-    <!-- Letter-by-letter animated heading -->
-    <h1 id="typewriterText"><span class="cursor">|</span></h1>
-    
-    <p class="subtitle"
-       data-en="Select your origin channel below to unlock your target hub"
-       data-ja="目的のハブを解放するために以下の元チャンネルを選択してください"
-       data-ar="اختر قناتك المفضلة من الأسفل للدخول إلى المركز المخصص">
-      Select your origin channel below to unlock your target hub
-    </p>
-  </header>
-
-  <!-- Interactive Selection Menu -->
-  <nav class="selector-menu">
-    <button class="menu-btn active" data-target="hacking">
-      <span class="btn-jp">ハッキング</span>
-      <span class="btn-en" data-en="SOFAI & 4H" data-ja="SOFAI & 4H" data-ar="SOFAI & 4H">SOFAI & 4H</span>
-    </button>
-    <button class="menu-btn" data-target="podcast">
-      <span class="btn-jp">ポッドキャスト</span>
-      <span class="btn-en" data-en="MORGAN & 4H" data-ja="MORGAN & 4H" data-ar="MORGAN & 4H">MORGAN & 4H</span>
-    </button>
-    <button class="menu-btn" data-target="docu">
-      <span class="btn-jp">ドキュメンタリー</span>
-      <span class="btn-en" data-en="TMK & 4H" data-ja="TMK & 4H" data-ar="TMK & 4H">TMK & 4H</span>
-    </button>
+  <!-- Navigation -->
+  <nav class="top-nav" aria-label="Main navigation">
+    <a class="brand" href="#top">4H GROUP</a>
+    <div class="nav-links">
+      <a href="#sofai">SOFAI 4H</a>
+      <a href="#morgan">MORGAN 4H</a>
+      <a href="#tmk">TMK 4H</a>
+    </div>
   </nav>
 
-  <!-- Display Container -->
-  <main class="display-container">
-
-    <!-- CHANNEL 1: Hacking -->
-    <article class="channel-card theme-hacking active" id="card-hacking">
-      <div class="card-corner-tl"></div>
-      <div class="card-corner-br"></div>
-      
-      <div class="card-header">
-        <div>
-          <span class="category-badge">テック & セキュリティ • TECH & SECURITY</span>
-          <h2 data-en="Hacking & Game Development" data-ja="ハッキング & ゲーム開発" data-ar="اختراق وتطوير الألعاب">Hacking & Game Development</h2>
+  <main id="top">
+    <!-- Contact -->
+    <section class="wire-section contact-section" id="contact">
+      <h1>CONTACT US</h1>
+      <div class="contact-grid">
+   
+        <div class="contact-column">
+               <div class="info">
+          <h1>THE OFFLINE PLATFORM</h1>
+          <p>Thank you for being part of our community.</p>
         </div>
-        <span class="status-badge active">● ACTIVE / 稼働中</span>
+          <a href="https://youtube.com/@SOFAI4H"><span class="social-icon"><i data-lucide="youtube"></i></span><strong>SOFAI 4H</strong></a>
+          <a href="https://youtube.com/@MORGAN4H"><span class="social-icon"><i data-lucide="youtube"></i></span><strong>MORGAN 4H</strong></a>
+          <a href="https://youtube.com/@TMK4H"><span class="social-icon"><i data-lucide="youtube"></i></span><strong>TMK 4H</strong></a>
+        </div>
+        <div class="contact-column">
+                  <div class="info">
+          <h1>THE online PLATFORM</h1>
+          <p>Enjoy the online experience.</p>
+        </div>
+          <a href="https://kick.com/tmk4h"><span class="social-icon"><i data-lucide="gamepad-2"></i></span><strong>KICK</strong></a>
+          <a href="https://t.me/tmk4you"><span class="social-icon"><i data-lucide="send"></i></span><strong>Telegram</strong><small>Direct message</small></a>
+          <a href="https://discord.gg/p9UBMdF6U"><span class="social-icon"><i data-lucide="messages-square"></i></span><strong>Discord server</strong></a>
+        </div>
+        <div class="contact-column">
+          <div class="info">
+          <h1>THE SUPPORT PLATFORM</h1>
+          <p>Thank you for showing your love and support.</p>
+        </div>
+          <a href="mailto:team4har@gmail.com"><span class="social-icon"><i data-lucide="mail"></i></span><strong>4hgroup@gmail.com</strong></a>
+          <a href="github.com/morgan4h"><span class="social-icon"><i data-lucide="github"></i></span><strong>github.com/morgan4h</strong></a>
+          <a href="https://sofai4h-shop.fourthwall.com"><span class="social-icon"><i data-lucide="shopping-bag"></i></span><strong>Market shop</strong></a>
+          <a href="https://patreon.com/TMK4H"><span class="social-icon"><i data-lucide="heart-handshake"></i></span><strong>Patreon</strong></a>
+             <a href="https://www.youtube.com/channel/UCYGFlVh_W9nu7OC0yP_XlBQ/join"><span class="social-icon"><i data-lucide="badge-dollar-sign"></i></span><strong>YouTube Membership</strong></a>
+        </div>
       </div>
+    </section>
 
-      <div class="tags">
-        <span class="tag">Ethical Hacking</span>
-        <span class="tag">Reverse Engineering</span>
-        <span class="tag">Game Dev</span>
+    <!-- SOFAI -->
+    <section class="wire-section showcase-section" id="sofai">
+      <header class="section-heading">
+        <span>SOFAI 4H</span>
+        <small>VISIT FROM HERE</small>
+      </header>
+      <div class="showcase-grid">
+        <a class="showcase-card" href="https://sofai4h.page.gd/blog/blog-php/public/pages/community.html">
+          <canvas class="canvas-art" data-art="blog" aria-label="Abstract purple blog artwork"></canvas>
+          <span>BLOG S4H</span>
+        </a>
+        <a class="showcase-card" href="gamef4h/index.html">
+          <canvas class="canvas-art" data-art="game" aria-label="Abstract purple game artwork"></canvas>
+          <span>F4H CLONE</span>
+        </a>
+        <a class="showcase-card" href="#">
+          <canvas class="canvas-art" data-art="hermes" aria-label="Abstract purple Hermes artwork"></canvas>
+          <span>HERMES 4H</span>
+        </a>
       </div>
+    </section>
 
-      <!-- Native Stat Box without Filters -->
-      <div class="stat-box">
-        <div class="stat-label">HUB STATUS / 状態</div>
-        <div class="stat-val" data-en="COMMUNITY ONLINE" data-ja="コミュニティオンライン" data-ar="المنصة متصلة الآن">COMMUNITY ONLINE</div>
+    <!-- Morgan -->
+    <section class="wire-section showcase-section" id="morgan">
+      <header class="section-heading">
+        <span>MORGAN 4H</span>
+        <small>VISIT FROM HERE</small>
+      </header>
+      <div class="showcase-grid showcase-grid-two">
+        <a class="showcase-card" href="#">
+          <canvas class="canvas-art" data-art="academy" aria-label="Abstract green academy artwork"></canvas>
+          <span>ACADEMY M4H</span>
+        </a>
+        <a class="showcase-card" href="#">
+          <canvas class="canvas-art" data-art="podcast" aria-label="Abstract green podcast artwork"></canvas>
+          <span>PODCAST</span>
+        </a>
       </div>
+    </section>
 
-      <a href="https://sofai4h.page.gd/blog/blog-php/public/pages/community.html" class="cyber-btn">
-        <span data-en="ENTER PLATFORM 進入" data-ja="プラットフォームに入る 進入" data-ar="دخول المنصة 進入">ENTER PLATFORM 進入</span> &rarr;
+    <!-- TMK -->
+    <section class="wire-section community-section" id="tmk">
+      <header class="section-heading">
+        <span>TMK 4H</span>
+      </header>
+      <a class="community-card" href="#">
+        <canvas class="canvas-art community-art" data-art="community" aria-label="Abstract blue community artwork"></canvas>
+        <div>
+          <strong>COMMUNITY T4H</strong>
+          <p>PLACE WHERE YOU CAN<br>EXPRESS YOURSELF FREELY</p>
+        </div>
       </a>
-    </article>
-
-    <!-- CHANNEL 2: Podcast -->
-    <article class="channel-card theme-podcast" id="card-podcast">
-      <div class="card-corner-tl"></div>
-      <div class="card-corner-br"></div>
-
-      <div class="card-header">
-        <div>
-          <span class="category-badge">教育 & トーク • TALKS & COURSES</span>
-          <h2 data-en="Programming Podcast & Courses" data-ja="プログラミングポッドキャスト & 講座" data-ar="بودكاست البرمجة والدورات">Programming Podcast & Courses</h2>
-        </div>
-        <span class="status-badge upcoming">▲ COMING SOON / 準備中</span>
-      </div>
-
-      <div class="tags">
-        <span class="tag">Podcasts</span>
-        <span class="tag">Motivation</span>
-        <span class="tag">Courses</span>
-      </div>
-
-      <div class="stat-box">
-        <div class="stat-label">PRODUCTION STATUS / 状況</div>
-        <div class="stat-val" data-en="BUILDING COURSE PORTAL" data-ja="コースポータルを構築中" data-ar="جاري بناء بوابة الدورات">BUILDING COURSE PORTAL</div>
-      </div>
-
-      <button class="cyber-btn modal-trigger" 
-              data-title="Programming Podcast" 
-              data-desc-en="We are building custom course portals and podcast discussion boards."
-              data-desc-ja="カスタムコースポータルとディスカッションボードを構築中です。"
-              data-desc-ar="نعلمكم أننا نقوم ببناء بوابة دورات خاصة ولوحات نقاش للبودكاست。">
-        <span data-en="CHECK STATUS 確認" data-ja="ステータス確認 確認" data-ar="التحقق من الحالة 確認">CHECK STATUS 確認</span> &rarr;
-      </button>
-    </article>
-
-    <!-- CHANNEL 3: Documentaries -->
-    <article class="channel-card theme-docu" id="card-docu">
-      <div class="card-corner-tl"></div>
-      <div class="card-corner-br"></div>
-
-      <div class="card-header">
-        <div>
-          <span class="category-badge">物語 & メディア • STORIES & LORE</span>
-          <h2 data-en="Documentaries & Mysteries" data-ja="ドキュメンタリー & ミステリー" data-ar="الأفلام الوثائقية والغموض">Documentaries & Mysteries</h2>
-        </div>
-        <span class="status-badge upcoming">▲ COMING SOON / 準備中</span>
-      </div>
-
-      <div class="tags">
-        <span class="tag">Documentaries</span>
-        <span class="tag">Mysteries</span>
-        <span class="tag">Gaming Lore</span>
-      </div>
-
-      <div class="stat-box">
-        <div class="stat-label">PRODUCTION STATUS / 状況</div>
-        <div class="stat-val" data-en="INVESTIGATIVE LORE IN PRODUCTION" data-ja="調査ドキュメンタリーを制作中" data-ar="التحقيقات الوثائقية قيد الإنتاج">INVESTIGATIVE LORE IN PRODUCTION</div>
-      </div>
-
-      <button class="cyber-btn modal-trigger" 
-              data-title="Documentaries & Mysteries" 
-              data-desc-en="Get ready for deep-dive investigative documentaries and gaming mysteries!"
-              data-desc-ja="深掘り調査ドキュメンタリーとゲームミステリーをお楽しみに！"
-              data-desc-ar="استعدوا للتحقيقات الوثائقية العميقة وأسرار الألعاب القادمة!">
-        <span data-en="CHECK STATUS 確認" data-ja="ステータス確認 確認" data-ar="التحقق من الحالة 確認">CHECK STATUS 確認</span> &rarr;
-      </button>
-    </article>
-
+    </section>
   </main>
 
-  <!-- Cyber Modal -->
-  <div class="modal-backdrop" id="modalBackdrop">
-    <div class="modal-box">
-      <span class="modal-badge">システム通知 • SYSTEM NOTICE</span>
-      <h3 id="modalTitle">Channel Portal</h3>
-      <p id="modalDescription">Content is coming soon.</p>
-      <button class="cyber-btn modal-close" id="modalCloseBtn">CLOSE 閉じる</button>
+  <footer>
+    <div>
+      <strong>4H GROUP</strong>
+      <p>i'm just doing it, and i am not try to be the best or proving anything, just doing it 
+        beecause i doing it.
+      </p>
     </div>
-  </div>
+    <a href="#top"><span>Back to top</span><i data-lucide="arrow-up"></i></a>
+  </footer>
 
   <script src="app.js"></script>
 </body>

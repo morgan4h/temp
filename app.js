@@ -1,6 +1,96 @@
 document.addEventListener('DOMContentLoaded', () => {
+  if (window.lucide) {
+    window.lucide.createIcons({ attrs: { 'stroke-width': 1.8, 'aria-hidden': 'true' } });
+  }
 
-  // --- 1. Language LocalStorage & Selector Engine ---
+  function drawCanvasArt(canvas) {
+    const ratio = window.devicePixelRatio || 1;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    const palette = {
+      blog: ['#17101f', '#241735', '#a78bfa'],
+      game: ['#13101c', '#302146', '#bb9cff'],
+      hermes: ['#101018', '#21152d', '#9d83eb'],
+      academy: ['#0d1712', '#17271d', '#69b98c'],
+      podcast: ['#0d1712', '#1c3224', '#86cfa5'],
+      community: ['#0c1520', '#172a3b', '#67b7ff']
+    };
+    const [dark, middle, accent] = palette[canvas.dataset.art] || palette.community;
+
+    const background = ctx.createLinearGradient(0, 0, width, height);
+    background.addColorStop(0, dark);
+    background.addColorStop(1, middle);
+    ctx.fillStyle = background;
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.strokeStyle = accent;
+    ctx.globalAlpha = 0.22;
+    ctx.lineWidth = 1;
+    for (let x = -height; x < width + height; x += 28) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x + height, height);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    ctx.strokeStyle = accent;
+    ctx.fillStyle = accent;
+    ctx.lineWidth = 3;
+
+    const kind = canvas.dataset.art;
+    if (kind === 'podcast') {
+      for (let i = 0; i < 12; i++) {
+        const barHeight = 24 + ((i * 29) % 86);
+        ctx.fillRect(22 + i * ((width - 44) / 12), (height - barHeight) / 2, 5, barHeight);
+      }
+    } else if (kind === 'academy') {
+      ctx.beginPath();
+      ctx.moveTo(width * 0.5, height * 0.18);
+      ctx.lineTo(width * 0.74, height * 0.37);
+      ctx.lineTo(width * 0.62, height * 0.37);
+      ctx.lineTo(width * 0.62, height * 0.68);
+      ctx.lineTo(width * 0.38, height * 0.68);
+      ctx.lineTo(width * 0.38, height * 0.37);
+      ctx.lineTo(width * 0.26, height * 0.37);
+      ctx.closePath();
+      ctx.fill();
+    } else if (kind === 'community') {
+      for (let i = 0; i < 7; i++) {
+        ctx.beginPath();
+        ctx.arc(width * (0.18 + i * 0.11), height * (0.5 + Math.sin(i) * 0.12), 18 + i % 3 * 5, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    } else {
+      ctx.beginPath();
+      ctx.arc(width * 0.5, height * 0.48, Math.min(width, height) * 0.22, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(width * 0.32, height * 0.48);
+      ctx.lineTo(width * 0.68, height * 0.48);
+      ctx.moveTo(width * 0.5, height * 0.30);
+      ctx.lineTo(width * 0.5, height * 0.66);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = accent;
+    ctx.globalAlpha = 0.15;
+    ctx.beginPath();
+    ctx.arc(width * 0.82, height * 0.18, 52, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  document.querySelectorAll('.canvas-art').forEach((canvas) => drawCanvasArt(canvas));
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.canvas-art').forEach((canvas) => drawCanvasArt(canvas));
+  });
+
   const langBackdrop = document.getElementById('langBackdrop');
   const langButtons = document.querySelectorAll('.lang-btn');
   const openLangBtn = document.getElementById('openLangBtn');
@@ -26,10 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
     applyLanguage(savedLang);
   }
 
-  langButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const selectedLang = btn.dataset.lang;
-      applyLanguage(selectedLang);
+  langButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      applyLanguage(button.dataset.lang);
       langBackdrop.classList.remove('is-open');
     });
   });
@@ -42,91 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Close language modal when clicking backdrop
-  langBackdrop.addEventListener('click', (e) => {
-    if (e.target === langBackdrop && localStorage.getItem('portal_lang')) {
+  langBackdrop.addEventListener('click', (event) => {
+    if (event.target === langBackdrop && localStorage.getItem('portal_lang')) {
       langBackdrop.classList.remove('is-open');
     }
-  });
-
-  // --- 2. Multi-Language Typewriter Effect ---
-  const headingPhrases = [
-    "Which YouTube channel brought you here?",
-    "どのチャンネルから来ましたか？",
-    "من أي قناة جئت؟"
-  ];
-  
-  const textContainer = document.getElementById('typewriterText');
-  let phraseIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-
-  function typeEffect() {
-    const currentPhrase = headingPhrases[phraseIndex];
-    charIndex += isDeleting ? -1 : 1;
-
-    const visibleText = currentPhrase.substring(0, charIndex);
-    textContainer.innerHTML = `${visibleText}<span class="cursor">|</span>`;
-
-    let speed = isDeleting ? 40 : 80;
-
-    if (!isDeleting && charIndex === currentPhrase.length) {
-      speed = 2200;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % headingPhrases.length;
-      speed = 400;
-    }
-
-    setTimeout(typeEffect, speed);
-  }
-
-  typeEffect();
-
-  // --- 3. Menu Navigation Handler ---
-  const menuButtons = document.querySelectorAll('.menu-btn');
-  const channelCards = document.querySelectorAll('.channel-card');
-
-  menuButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.target;
-
-      menuButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      channelCards.forEach((card) => {
-        card.classList.remove('active');
-        if (card.id === `card-${target}`) {
-          card.classList.add('active');
-        }
-      });
-    });
-  });
-
-  // --- 4. Modal Dialog Controller ---
-  const modalBackdrop = document.getElementById('modalBackdrop');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalDescription = document.getElementById('modalDescription');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
-  const modalTriggers = document.querySelectorAll('.modal-trigger');
-
-  modalTriggers.forEach((trigger) => {
-    trigger.addEventListener('click', () => {
-      const currentLang = localStorage.getItem('portal_lang') || 'en';
-      const langSuffix = currentLang.charAt(0).toUpperCase() + currentLang.slice(1);
-      
-      modalTitle.textContent = trigger.dataset.title;
-      modalDescription.textContent = trigger.dataset[`desc${langSuffix}`] || trigger.dataset.descEn || trigger.dataset.desc;
-      modalBackdrop.classList.add('is-open');
-    });
-  });
-
-  function closeModal() {
-    modalBackdrop.classList.remove('is-open');
-  }
-
-  modalCloseBtn.addEventListener('click', closeModal);
-  modalBackdrop.addEventListener('click', (e) => {
-    if (e.target === modalBackdrop) closeModal();
   });
 });
